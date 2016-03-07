@@ -1,0 +1,107 @@
+package by.bsu.krukouski.testscreator.subject;
+
+import java.util.ArrayList;
+
+/**
+ * Created by Krukouski Andrei on 26.12.2015.
+ */
+public class Test extends Entity {
+
+    private String topic;//тема теста
+    private String subject;//название предмета по которому сделан тест
+    private int time;//время на выпольнение теста(в минутах)
+    private ArrayList<Question> questions;//список вопросов
+
+    public Test(){
+        questions = new ArrayList<>();
+    }
+    public Test(int id, String subject, String topic, int time, ArrayList<Question> questions){
+        super(id);
+        this.topic = topic;
+        this.subject = subject;
+        this.time = time;
+        this.questions = new ArrayList<>();
+        this.questions = questions;
+    }
+    public Test(int id, String subject, String topic, int time){
+        super(id);
+        this.topic = topic;
+        this.subject = subject;
+        this.time = time;
+        this.questions = new ArrayList<>();
+    }
+    public Test(String subject, String topic, Integer time){
+        this.topic = topic;
+        this.subject = subject;
+        this.time = time;
+        this.questions = new ArrayList<>();
+    }
+    public String getTopic(){
+        return topic;
+    }
+    public String getSubject(){
+        return subject;
+    }
+    public int getTime(){
+        return time;
+    }
+    public ArrayList<Question> getQuestions(){
+        return questions;
+    }
+    public void setTopic(String topic){
+        this.topic = topic;
+    }
+    public void setSubject(String subject){
+        this.subject = subject;
+    }
+    public void setTime(int time){
+        this.time = time;
+    }
+    public void setQuestions(ArrayList<Question> questions){
+        this.questions = questions;
+    }
+    public void setQuestion(Question question){
+        this.questions.add(question);
+    }
+    public Integer getCountQuestions(){
+        return questions.toArray().length;
+    }
+    @Override
+    public String toString(){
+        return "Test [ id = " + getId() + ", topic = " + topic + ", subject = " +
+                subject + ", time = " + time + " ]";
+    }
+    @Override
+    public int hashCode(){
+        return (int)(17*getId() + time/13 + ((topic == null) ? 0 : topic.hashCode()));
+    }
+    @Override
+    public boolean equals(Object object){
+        if(this == object)
+            return true;
+        if(object == null)
+            return false;
+        if(getClass() != object.getClass())
+            return false;
+
+        Test other = (Test) object;
+        if(super.getId() != other.getId())
+            return false;
+        if(topic == null){
+            if(other.topic != null)
+                return false;
+        }else if(!topic.equals(other.topic))
+            return false;
+        if(subject == null){
+            if(other.subject != null)
+                return false;
+        }else if(subject.equals(other.subject))
+            return false;
+        if(time != other.time)
+            return false;
+        if(!questions.equals(other.questions))
+            return false;
+        return true;
+    }
+
+}
