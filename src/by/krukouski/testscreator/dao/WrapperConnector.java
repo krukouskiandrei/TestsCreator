@@ -17,7 +17,7 @@ public class WrapperConnector {
     private Connection connection;
     public WrapperConnector(){
         try {
-            ResourceBundle resource = ResourceBundle.getBundle("resources.database");
+            /*ResourceBundle resource = ResourceBundle.getBundle("resources.database");
             String url = resource.getString("db.url");
             String user = resource.getString("db.user");
             String pass = resource.getString("db.password");
@@ -26,7 +26,8 @@ public class WrapperConnector {
             properties.put("user", user);
             properties.put("password", pass);
             Class.forName(driver).newInstance();
-            connection = DriverManager.getConnection(url, properties);
+            connection = DriverManager.getConnection(url, properties);*/
+            connection = DataSource.getConnection();
         }catch (MissingResourceException e){
             new ResourceException(e);
         }catch (SQLException e){
@@ -36,11 +37,11 @@ public class WrapperConnector {
             new ResourceSQLExeption(e);
         }catch (ClassNotFoundException e){
 
-        }catch (InstantiationException e){
+        }/*catch (InstantiationException e){
 
         }catch (IllegalAccessException e){
 
-        }
+        }*/
 
     }
     public Statement getStatement() throws SQLException{
@@ -71,6 +72,7 @@ public class WrapperConnector {
     public void closeConnection(){
         if(connection != null){
             try {
+                DataSource.returnConnection(connection);
                 connection.close();
             }catch (SQLException e){
                 new ResourceSQLExeption(e);
