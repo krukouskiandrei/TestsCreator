@@ -1,7 +1,8 @@
 package by.krukouski.testscreator.dao;
 
-import by.krukouski.testscreator.exception.ResourceException;
+
 import by.krukouski.testscreator.exception.ResourceSQLExeption;
+import org.apache.log4j.Logger;
 
 
 import java.sql.*;
@@ -14,34 +15,15 @@ import java.util.ResourceBundle;
  */
 public class WrapperConnector {
 
+    static Logger logger = Logger.getLogger(WrapperConnector.class);
+
     private Connection connection;
     public WrapperConnector(){
         try {
-            /*ResourceBundle resource = ResourceBundle.getBundle("resources.database");
-            String url = resource.getString("db.url");
-            String user = resource.getString("db.user");
-            String pass = resource.getString("db.password");
-            String driver = resource.getString("db.driver");
-            Properties properties = new Properties();
-            properties.put("user", user);
-            properties.put("password", pass);
-            Class.forName(driver).newInstance();
-            connection = DriverManager.getConnection(url, properties);*/
             connection = DataSource.getConnection();
-        }catch (MissingResourceException e){
-            new ResourceException(e);
-        }catch (SQLException e){
-            System.out.println(e.getMessage());
-            System.out.println(e.getErrorCode());
-            System.out.println(e.getSQLState());
-            new ResourceSQLExeption(e);
-        }catch (ClassNotFoundException e){
-
-        }/*catch (InstantiationException e){
-
-        }catch (IllegalAccessException e){
-
-        }*/
+        }catch (SQLException | ClassNotFoundException e) {
+            logger.error(e.getMessage());
+        }
 
     }
     public Statement getStatement() throws SQLException{
@@ -50,6 +32,7 @@ public class WrapperConnector {
             if(statement != null)
                 return statement;
         }
+        logger.error("connection or statement is null");
         throw new ResourceSQLExeption("connection or statement is null");
     }
     public PreparedStatement getPreparedStatement(String sql) throws SQLException{
@@ -58,6 +41,7 @@ public class WrapperConnector {
             if(preparedStatement != null)
                 return preparedStatement;
         }
+        logger.error("connection or preparedStatement is null");
         throw new ResourceSQLExeption("connection or preparedStatement is null");
     }
     public void closeStatement(Statement statement){
@@ -65,7 +49,7 @@ public class WrapperConnector {
             try {
                 statement.close();
             }catch (SQLException e){
-                new ResourceSQLExeption(e);
+                logger.error(e.getMessage());
             }
         }
     }
@@ -75,7 +59,7 @@ public class WrapperConnector {
                 DataSource.returnConnection(connection);
                 connection.close();
             }catch (SQLException e){
-                new ResourceSQLExeption(e);
+                logger.error(e.getMessage());
             }
         }
     }

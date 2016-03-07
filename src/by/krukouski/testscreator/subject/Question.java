@@ -8,8 +8,8 @@ import java.util.Iterator;
  */
 public class Question extends Entity {
 
-    private String valueQuestion;//вопрос
-    private ArrayList<Answer> answers;//ответы
+    private String valueQuestion;//questions
+    private ArrayList<Answer> answers;//answers
 
     public Question(){
         answers = new ArrayList<>();

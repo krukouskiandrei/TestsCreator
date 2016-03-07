@@ -11,7 +11,7 @@ import by.krukouski.testscreator.subject.User;
 /**
  * Created by Krukouski Andrei on 02.01.2016.
  */
-public class CreateAllTestCommand implements IActionCommand {//создание теста
+public class CreateAllTestCommand implements IActionCommand {//creating the test
     private static final String PARAM_NEW_TEST = "newtest";
     private static final String PARAM_VALUE_QUESTION = "value_question";
     private static final String PARAM_CORRECT_ANSWER = "correct_answer";
@@ -23,7 +23,8 @@ public class CreateAllTestCommand implements IActionCommand {//создание 
         String value_question = request.getRequstParameters(PARAM_VALUE_QUESTION)[0];
         String[] correct_answer = request.getRequstParameters(PARAM_CORRECT_ANSWER);
         String[] answers  = request.getRequstParameters(PARAM_ANSWER);
-        Question question = CreateQuestionLogic.createQuestion(value_question, correct_answer, answers);
+        CreateQuestionLogic createQuestionLogic = new CreateQuestionLogic();
+        Question question = createQuestionLogic.createQuestion(value_question, correct_answer, answers);
         Test test = (Test) request.getSessionAttributes(PARAM_NEW_TEST);
         User user = (User) request.getSessionAttributes(PARAM_USER);
         test.setQuestion(question);

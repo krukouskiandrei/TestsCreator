@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class TakeTestLogic {
 
-    public synchronized static List<Test> showAllTests(){
+    public List<Test> showAllTests(){
 
         TestDAO testDAO = new TestDAO();
         List<Test> tests = testDAO.findAll();

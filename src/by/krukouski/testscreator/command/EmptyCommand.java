@@ -10,7 +10,7 @@ public class EmptyCommand implements IActionCommand {
 
     @Override
     public String execute(SessionRequestContent request){
-        //в случае ошибки или прямого обращения к контроллеру произойдет переадрусация на страницу ввода логина и пароля
+        //if will be error or direct access to controller will redirecte on login-password page
         String page = ConfigurationManager.getProperty("path.page.login");
         return page;
     }

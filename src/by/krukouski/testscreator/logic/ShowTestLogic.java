@@ -8,7 +8,7 @@ import by.krukouski.testscreator.subject.Test;
  */
 public class ShowTestLogic {
 
-    public synchronized static Test showAllTest(Integer id){
+    public Test showAllTest(Integer id){
 
         TestDAO testDAO = new TestDAO();
         Test test = testDAO.findEntityById(id);

@@ -7,7 +7,7 @@ import by.krukouski.testscreator.session.SessionRequestContent;
 /**
  * Created by Krukouski Andrei on 01.01.2016.
  */
-public class CheckTestCommand implements IActionCommand {//проверка теста
+public class CheckTestCommand implements IActionCommand {//the test checking
 
     @Override
     public String execute(SessionRequestContent request){

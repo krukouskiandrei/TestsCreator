@@ -1,5 +1,7 @@
 package by.krukouski.testscreator.dao;
 
+import org.apache.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,6 +13,9 @@ import java.util.List;
  */
 //Connectio Pool Class
 public class ConnectionPool {
+
+    static Logger logger = Logger.getLogger(ConnectionPool.class);
+
     //array list to hold the connections
     List<Connection> availableConnections = new ArrayList<Connection>();
     //initialize the connection pool
@@ -41,10 +46,8 @@ public class ConnectionPool {
             Class.forName(config.DB_DRIVER);
             Connection connection = (Connection) DriverManager.getConnection(config.DB_URL, config.DB_USER_NAME, config.DB_PASSWORD);
             return connection;
-        }catch (ClassNotFoundException e){
-            e.printStackTrace();
-        }catch (SQLException e){
-            e.printStackTrace();
+        }catch (ClassNotFoundException | SQLException e){
+            logger.error(e.getMessage());
         }
         return null;
     }

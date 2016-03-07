@@ -28,10 +28,11 @@ public class CreateUserCommand implements IActionCommand {
         user.setEmail(request.getRequstParameters(PARAM_NAME_EMAIL)[0]);
         user.setLogin(request.getRequstParameters(PARAM_NAME_LOGIN)[0]);
         user.setPassword(new CreatePasswordMD5().createPasswordMD5(request.getRequstParameters(PARAN_NAME_PASSWORD)[0]));
-        int index = new CreateUserLogic().createUser(user);
+        CreateUserLogic createUserLogic = new CreateUserLogic();
+        int index = createUserLogic.createUser(user);
         if(index == 1){
             request.setRequestAttributes("user", user);
-            //определение пути к main.jsp
+            //defines the way to main.jsp
             page = ConfigurationManager.getProperty("path.page.login");
         }else if (index == 0){
             request.setRequestAttributes("errorLogin",

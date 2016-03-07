@@ -5,6 +5,7 @@ import by.krukouski.testscreator.exception.ResourceUnsupportedOperationExeption;
 import by.krukouski.testscreator.subject.Answer;
 import by.krukouski.testscreator.subject.Question;
 import by.krukouski.testscreator.subject.Test;
+import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,21 +20,23 @@ import java.util.List;
  */
 public class TestDAO extends AbstractDAO<Integer, Test> {
 
-    public static final String SQL_SELECT_ALL_TESTS = "SELECT id, subject, topic, time FROM test";//выбор всех тестов
-    public static final String SQL_SELECT_IDTEST_BY_TOPIC_AND_SUBJECT = "SELECT id FROM test WHERE topic = ? AND subject = ?";//выбор тестов по теме и предмету
-    public static final String SQL_SELECT_IDQUESTION_BY_VALUEQUESTION = "SELECT id FROM question WHERE value_question = ?";//выбор id вопроса по значению вопроса
-    public static final String SQL_SELECT_TEST = "SELECT id, subject, topic, time FROM test WHERE id = ?";//выбор теста по id
-    public static final String SQL_SELECR_ALL_QUESTIONS_BY_TEST = "SELECT id, value_question FROM question WHERE id_test = ?";//выбор вопросов по id теста
-    public static final String SQL_SELECT_ALL_ANSWERS_BY_QUESTION = "SELECT id, value_answer, correct_answer FROM answer WHERE id_question = ?";//выбор ответов по id вопроса
-    public static final String SQL_INSERT_TEST_BY_USER = "INSERT INTO test(id_user, topic, subject, time) VALUES(?, ?, ?, ?)";//вставка теста в БД
-    public static final String SQL_INSERT_QUESTION_BY_TEST = "INSERT INTO question(id_test, value_question) VALUES(?, ?)";//вставка вопроса в БД
-    public static final String SQL_INSERT_ANSWER_BY_QUESTION = "INSERT INTO answer(id_question, value_answer, correct_answer) VALUES(?, ?, ?)";//вставка ответа в БД
+    static Logger logger = Logger.getLogger(TestDAO.class);
+
+    public static final String SQL_SELECT_ALL_TESTS = "SELECT id, subject, topic, time FROM test";//select all tests
+    public static final String SQL_SELECT_IDTEST_BY_TOPIC_AND_SUBJECT = "SELECT id FROM test WHERE topic = ? AND subject = ?";//select tests by topic and subject
+    public static final String SQL_SELECT_IDQUESTION_BY_VALUEQUESTION = "SELECT id FROM question WHERE value_question = ?";//select question id by value question
+    public static final String SQL_SELECT_TEST = "SELECT id, subject, topic, time FROM test WHERE id = ?";//select test by id
+    public static final String SQL_SELECR_ALL_QUESTIONS_BY_TEST = "SELECT id, value_question FROM question WHERE id_test = ?";//select questions by test id
+    public static final String SQL_SELECT_ALL_ANSWERS_BY_QUESTION = "SELECT id, value_answer, correct_answer FROM answer WHERE id_question = ?";//select answer by questio id
+    public static final String SQL_INSERT_TEST_BY_USER = "INSERT INTO test(id_user, topic, subject, time) VALUES(?, ?, ?, ?)";//insert test in database
+    public static final String SQL_INSERT_QUESTION_BY_TEST = "INSERT INTO question(id_test, value_question) VALUES(?, ?)";//insert questio in database
+    public static final String SQL_INSERT_ANSWER_BY_QUESTION = "INSERT INTO answer(id_question, value_answer, correct_answer) VALUES(?, ?, ?)";//insert answer in database
 
     public TestDAO(){
         this.connector = new WrapperConnector();
     }
     @Override
-    public List<Test> findAll() {//получение списка всех тестов
+    public List<Test> findAll() {//get list all tests
 
         List<Test> tests = new ArrayList<>();
         Statement statement = null;
@@ -49,17 +52,15 @@ public class TestDAO extends AbstractDAO<Integer, Test> {
                 tests.add(test);
             }
         }catch (SQLException e){
-            new ResourceSQLExeption();
+            logger.error(e.getMessage());
         }finally {
             this.closeStatement(statement);
-
-
         }
 
         return tests;
     }
     @Override
-    public Test findEntityById(Integer id){//нахожение теста по id
+    public Test findEntityById(Integer id){//searching test by id
         Test test = new Test();
         PreparedStatement statement = null;
         try{
@@ -92,13 +93,13 @@ public class TestDAO extends AbstractDAO<Integer, Test> {
                 test.setQuestion(question);
             }
         }catch (SQLException e){
-            new ResourceSQLExeption(e);
+            logger.error(e.getMessage());
         }finally {
             this.closeStatement(statement);
         }
         return test;
     }
-    public boolean createTest(Test test, Integer id_user){//создание теста
+    public boolean createTest(Test test, Integer id_user){//creating test
         PreparedStatement statement = null;
         try {
             statement = connector.getPreparedStatement(SQL_INSERT_TEST_BY_USER);
@@ -138,7 +139,7 @@ public class TestDAO extends AbstractDAO<Integer, Test> {
                 }
             }
         }catch (SQLException e){
-            new ResourceSQLExeption(e);
+            logger.error(e.getMessage());
             return false;
         }finally {
             this.closeStatement(statement);

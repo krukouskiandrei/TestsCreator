@@ -7,8 +7,8 @@ import by.krukouski.testscreator.subject.User;
  * Created by Krukouski Andrei on 09.12.2015.
  */
 public class LoginLogic {
-    //проверка имени пользователя и пароля
-    public synchronized static User checkLogin(String enterLogin, String enterPassword){
+    //checking login and password
+    public User checkLogin(String enterLogin, String enterPassword){
 
         UserDAO userDAO = new UserDAO();
         User user = userDAO.findUserByLogin(enterLogin);

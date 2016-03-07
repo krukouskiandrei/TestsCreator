@@ -1,7 +1,6 @@
 package by.krukouski.testscreator.filter;
 
-import by.krukouski.testscreator.exception.ResourceIOException;
-import by.krukouski.testscreator.exception.ResourceServletException;
+import org.apache.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -16,6 +15,9 @@ import java.io.IOException;
             @WebInitParam(name = "encoding", value = "UTF-8", description = "Encoding Param")
     })
 public class EncodingFilter implements Filter {
+
+    static Logger logger = Logger.getLogger(EncodingFilter.class);
+
     private String code;
     public void init(FilterConfig filterConfig){
         code = filterConfig.getInitParameter("encoding");
@@ -23,16 +25,14 @@ public class EncodingFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain){
         try {
             String codeRequest = request.getCharacterEncoding();
-            //установка кодировки из параметров фильтра, ели кодировка не установлена
+            //setting the encoding parameters of the filter, if the encoding is not installed
             if(code != null && !code.equalsIgnoreCase(codeRequest)){
                 request.setCharacterEncoding(code);
                 response.setCharacterEncoding(code);
             }
             filterChain.doFilter(request, response);
-        }catch (IOException e){
-            new ResourceIOException(e);
-        }catch (ServletException e){
-            new ResourceServletException(e);
+        }catch (IOException | ServletException e){
+            logger.error(e.getMessage());
         }
     }
     public void destroy(){

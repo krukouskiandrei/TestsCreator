@@ -8,7 +8,7 @@ import by.krukouski.testscreator.subject.Question;
  */
 public class CreateQuestionLogic {
 
-    public static Question createQuestion(String value_question, String[] correct_answer, String[] answers){
+    public Question createQuestion(String value_question, String[] correct_answer, String[] answers){
         Question question = new Question();
         question.setValueQuestion(value_question);
         for(int i = 0; i < answers.length; i++){

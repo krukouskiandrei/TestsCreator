@@ -1,6 +1,6 @@
 package by.krukouski.testscreator.subject;
 
-import by.krukouski.testscreator.exception.ResourceException;
+import org.apache.log4j.Logger;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -11,12 +11,14 @@ import java.security.NoSuchAlgorithmException;
  */
 public class User extends Entity {
 
-    private String lastname;//фамилия пользователя
-    private String firstname;//имя пользователя
-    private String email;//e-mail пользователя
-    private String login;//логин пользователя
-    private String password;//пороль пользователя
-    private boolean admin;//администратор(true - да, false - нет)
+    static Logger logger = Logger.getLogger(User.class);
+
+    private String lastname;//user lastname
+    private String firstname;//user surname
+    private String email;//user e-mail
+    private String login;//user login
+    private String password;//uset password
+    private boolean admin;//is admin(true - yes, false - no)
 
 
     public User(){
@@ -68,8 +70,8 @@ public class User extends Entity {
     public void setPassword(String password){
         this.password = password;
     }
-    public void setPasswordMD5(String password){//добавление пороля(для хранения пороля используется функция
-        MessageDigest messageDigest = null;                             //для шифрования пороля md5
+    public void setPasswordMD5(String password){//add password (function is used to store passwords
+        MessageDigest messageDigest = null;                             //md5 password encryption
         byte[] digest = new byte[0];
         try {
             messageDigest = MessageDigest.getInstance("MD5");
@@ -77,7 +79,7 @@ public class User extends Entity {
             messageDigest.update(password.getBytes());
             digest = messageDigest.digest();
         }catch (NoSuchAlgorithmException e){
-            new ResourceException(e);
+            logger.error(e.getMessage());
         }
 
         BigInteger bigInt = new BigInteger(1, digest);
@@ -128,13 +130,13 @@ public class User extends Entity {
     }
 
     @Override
-    public String toString(){//переопределение метода toString()
+    public String toString(){//redirect toString() method
         return "User [ id = " + getId() + ", lastname = " + lastname + ", firstname = " +
                 firstname + ", email = " + email + ", login = " + login + ", password = " +
                 password + ", admin = " + admin +" ]";
     }
     @Override
-    public boolean equals(Object object){//переопределение метода equals()
+    public boolean equals(Object object){//redirect equals() method
         if(this == object)
             return true;
         if(object == null)

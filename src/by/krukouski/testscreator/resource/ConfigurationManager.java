@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
  * Created by Krukouski Andrei on 09.12.2015.
  */
 public class ConfigurationManager {
-    // класс извлекает информацию из файла config.properties
+    // class extract information with file config.properties
     private final static ResourceBundle resourceBundle = ResourceBundle.getBundle("resources.config");
 
     private ConfigurationManager() { }

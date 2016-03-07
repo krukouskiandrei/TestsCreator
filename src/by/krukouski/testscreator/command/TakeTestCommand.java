@@ -16,7 +16,8 @@ public class TakeTestCommand implements IActionCommand {
     @Override
     public String execute(SessionRequestContent request){
         String page = null;
-        List<Test> listTests = TakeTestLogic.showAllTests();
+        TakeTestLogic takeTestLogic = new TakeTestLogic();
+        List<Test> listTests = takeTestLogic.showAllTests();
         if(listTests != null){
             request.setRequestAttributes("listTests", listTests);
             page = ConfigurationManager.getProperty("path.page.takeTest");

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Krukouski Andrei on 27.12.2015.
  */
-public abstract class AbstractDAO <K, T extends Entity> {//К - ключ в таблице
+public abstract class AbstractDAO <K, T extends Entity> {//К - key in table
 
     protected WrapperConnector connector;
 

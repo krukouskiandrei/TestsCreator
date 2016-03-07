@@ -1,9 +1,10 @@
 package by.krukouski.testscreator.dao;
 
-import by.krukouski.testscreator.exception.ResourceException;
+
 import by.krukouski.testscreator.exception.ResourceUnsupportedOperationExeption;
 import by.krukouski.testscreator.exception.ResourceSQLExeption;
 import by.krukouski.testscreator.subject.User;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,17 +15,19 @@ import java.util.List;
  */
 public class UserDAO extends AbstractDAO<Integer, User> {
 
-    public static final String SQL_SELECT_ALL_USERS = "SELECT id, firstname, lastname, email, login, password, admin FROM user";//вобор всех пользователей
-    public static final String SQL_SELECT_USER_BY_LOGIN = "SELECT id, firstname, lastname, email, login, password, admin FROM user WHERE login = ?";//вобор пользователя по логину
-    public static final String SQL_SELECT_USER_BY_PASSWORD = "SELECT id, firstname, lastname, email, login, password, admin FROM user WHERE password = ?";//выбор пользователя по паролю
-    public static final String SQL_INSERT_USER = "INSERT INTO user(lastname, firstname, email, login, password) VALUES(?, ?, ?, ?, ?)";//вставка пользователя
-    public static final String SQL_INSERT_STATISTIC_BY_USER = "INSERT INTO statistic(id_user, take_tests, right_tests) VALUES(?, ?, ?)";//создание таблицы "статистика" для полизователя
-    public static final String SQL_SELECT_IDUSER_BY_LOGIN = "SELECT id FROM user WHERE login = ?";//выбор id пользователя по его логину
+    static Logger logger = Logger.getLogger(UserDAO.class);
+
+    public static final String SQL_SELECT_ALL_USERS = "SELECT id, firstname, lastname, email, login, password, admin FROM user";//select all users
+    public static final String SQL_SELECT_USER_BY_LOGIN = "SELECT id, firstname, lastname, email, login, password, admin FROM user WHERE login = ?";//select user by login
+    public static final String SQL_SELECT_USER_BY_PASSWORD = "SELECT id, firstname, lastname, email, login, password, admin FROM user WHERE password = ?";//select user by password
+    public static final String SQL_INSERT_USER = "INSERT INTO user(lastname, firstname, email, login, password) VALUES(?, ?, ?, ?, ?)";//insert user
+    public static final String SQL_INSERT_STATISTIC_BY_USER = "INSERT INTO statistic(id_user, take_tests, right_tests) VALUES(?, ?, ?)";//creating statistic table for user
+    public static final String SQL_SELECT_IDUSER_BY_LOGIN = "SELECT id FROM user WHERE login = ?";//select user id by uset login
     public UserDAO(){
         this.connector = new WrapperConnector();
     }
     @Override
-    public List<User> findAll(){//получение всех пользователей из БД
+    public List<User> findAll(){//get list all users
         List<User> users = new ArrayList<>();
         Statement statement = null;
         try {
@@ -42,15 +45,13 @@ public class UserDAO extends AbstractDAO<Integer, User> {
                 users.add(user);
             }
         }catch (SQLException e){
-            new ResourceSQLExeption(e);
-        }catch (Exception e){
-            new ResourceException(e);
+            logger.error(e.getMessage());
         }finally {
             this.closeStatement(statement);
         }
         return users;
     }
-    public User findUserByLogin(String login){//нахождение пользователя по логину
+    public User findUserByLogin(String login){//searching user by login
         User user = new User();
         PreparedStatement statement = null;
         try {
@@ -67,15 +68,13 @@ public class UserDAO extends AbstractDAO<Integer, User> {
             user.setAdmin(resultSet.getBoolean("admin"));
 
         }catch (SQLException e){
-            new ResourceSQLExeption(e);
-        }catch  (Exception e){
-            new ResourceException(e);
+            logger.error(e.getMessage());
         }finally {
             this.closeStatement(statement);
         }
         return user;
     }
-    public User findUserByPassword(String password){//нахождение пользователя по паролю
+    public User findUserByPassword(String password){//searching user by password
         User user = new User();
         PreparedStatement statement = null;
         try {
@@ -92,9 +91,7 @@ public class UserDAO extends AbstractDAO<Integer, User> {
             user.setAdmin(resultSet.getBoolean("admin"));
 
         }catch (SQLException e){
-            new ResourceSQLExeption(e);
-        }catch  (Exception e){
-            new ResourceException(e);
+            logger.error(e.getMessage());
         }finally {
             this.closeStatement(statement);
         }
@@ -113,7 +110,7 @@ public class UserDAO extends AbstractDAO<Integer, User> {
         throw new ResourceUnsupportedOperationExeption();
     }
     @Override
-    public boolean create(User user){//вставка пользователя в БД
+    public boolean create(User user){//insert user in database
         PreparedStatement statement = null;
         try{
             statement = connector.getPreparedStatement(SQL_INSERT_USER);
@@ -135,7 +132,7 @@ public class UserDAO extends AbstractDAO<Integer, User> {
             statement.executeUpdate();
 
         }catch (SQLException e){
-            new ResourceSQLExeption(e);
+            logger.error(e.getMessage());
             return false;
         }finally {
             this.closeStatement(statement);

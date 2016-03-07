@@ -21,7 +21,8 @@ public class CreateQuestionCommand implements IActionCommand {
         String value_question = request.getRequstParameters(PARAM_VALUE_QUESTION)[0];
         String[] correct_answer = request.getRequstParameters(PARAM_CORRECT_ANSWER);
         String[] answers  = request.getRequstParameters(PARAM_ANSWER);
-        Question question = CreateQuestionLogic.createQuestion(value_question, correct_answer, answers);
+        CreateQuestionLogic createQuestionLogic = new CreateQuestionLogic();
+        Question question = createQuestionLogic.createQuestion(value_question, correct_answer, answers);
         if(question != null){
             Test test = (Test) request.getSessionAttributes("newtest");
             test.setQuestion(question);

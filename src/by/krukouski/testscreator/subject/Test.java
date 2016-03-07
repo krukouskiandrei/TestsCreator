@@ -7,10 +7,10 @@ import java.util.ArrayList;
  */
 public class Test extends Entity {
 
-    private String topic;//тема теста
-    private String subject;//название предмета по которому сделан тест
-    private int time;//время на выпольнение теста(в минутах)
-    private ArrayList<Question> questions;//список вопросов
+    private String topic;//test topic
+    private String subject;//name of the object on which the test is made
+    private int time;//time to complete the test (in minutes)
+    private ArrayList<Question> questions;//list questions
 
     public Test(){
         questions = new ArrayList<>();

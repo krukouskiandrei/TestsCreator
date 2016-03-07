@@ -8,7 +8,7 @@ import by.krukouski.testscreator.subject.User;
  */
 public class CreateUserLogic {
 
-    public static int createUser(User user){
+    public int createUser(User user){
 
         UserDAO userDAO = new UserDAO();
         User userLogin = userDAO.findUserByLogin(user.getLogin());

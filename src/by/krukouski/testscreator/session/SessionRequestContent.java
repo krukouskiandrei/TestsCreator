@@ -8,11 +8,11 @@ import java.util.*;
 /**
  * Created by Krukouski Andrei on 09.12.2015.
  */
-public class SessionRequestContent  {//класс для хранения содержимого запроса
+public class SessionRequestContent  {//class to store the contents of the request
 
-    private HashMap<String, Object> requestAttributes;//хранение атрибутов
-    private HashMap<String, String[]> requestParameters;//хранение параметров
-    private HashMap<String, Object> sessionAttribytes; // хранение атрибутов сессии
+    private HashMap<String, Object> requestAttributes;//storage attributes
+    private HashMap<String, String[]> requestParameters;//storage parameters
+    private HashMap<String, Object> sessionAttribytes; // starage session attribytes
 
     public SessionRequestContent(){
         requestAttributes = new HashMap<String, Object>();
@@ -20,7 +20,7 @@ public class SessionRequestContent  {//класс для хранения сод
         sessionAttribytes = new HashMap<String, Object>();
     }
 
-    //извлечение информации из request
+    //extract information from request
     public void extractValue(HttpServletRequest request){
 
         Enumeration parameters = request.getParameterNames();
@@ -44,7 +44,7 @@ public class SessionRequestContent  {//класс для хранения сод
 
     }
 
-    //добавление информации в request
+    //add information in request
     public void insertAttribute(HttpServletRequest request){
 
         HttpSession session = request.getSession(true);
@@ -60,7 +60,7 @@ public class SessionRequestContent  {//класс для хранения сод
 
     }
 
-    public  void insertAttributeSession(HttpSession session){//добавление информации в session
+    public  void insertAttributeSession(HttpSession session){//add information in session
 
         Set<Map.Entry<String, Object>> setAttributesSession = sessionAttribytes.entrySet();
         Iterator<Map.Entry<String, Object>> iter = setAttributesSession.iterator();
@@ -74,37 +74,37 @@ public class SessionRequestContent  {//класс для хранения сод
     }
 
 
-    public void setRequestAttributes(String string, Object object){//всатвка атрибута
+    public void setRequestAttributes(String string, Object object){//set attribute
 
         requestAttributes.put(string, object);
 
     }
 
-    public void setRequestParameters(String string, String[] strings){//вставка параметров
+    public void setRequestParameters(String string, String[] strings){//set parameters
 
         requestParameters.put(string, strings);
 
     }
 
-    public void setSessionAttribytes(String string, Object object){//вставка атрибута в session
+    public void setSessionAttribytes(String string, Object object){//set attribute in session
 
         sessionAttribytes.put(string, object);
 
     }
 
-    public Object getRequestAttributes(String string){//получение атрибутта request
+    public Object getRequestAttributes(String string){//get attribute from request
 
         return requestAttributes.get(string);
 
     }
 
-    public String[] getRequstParameters(String string){//получение параметра request
+    public String[] getRequstParameters(String string){//get parameter from request
 
         return requestParameters.get(string);
 
     }
 
-    public Object getSessionAttributes(String string){//получение атрибута session
+    public Object getSessionAttributes(String string){//get attribute from session
 
         return sessionAttribytes.get(string);
 
@@ -112,7 +112,7 @@ public class SessionRequestContent  {//класс для хранения сод
 
 
 
-    //переопределение метода toString
+    //redirect  toString method
     @Override
     public String toString(){
         StringBuilder result = new StringBuilder();

@@ -1,9 +1,7 @@
 package by.krukouski.testscreator.controller;
 
 import by.krukouski.testscreator.command.IActionCommand;
-import by.krukouski.testscreator.command.factory.ActionFactory;
-import by.krukouski.testscreator.exception.ResourceServletException;
-import by.krukouski.testscreator.exception.ResourceIOException;
+import by.krukouski.testscreator.command.ActionFactory;
 import by.krukouski.testscreator.resource.ConfigurationManager;
 import by.krukouski.testscreator.resource.MessageManager;
 import by.krukouski.testscreator.session.SessionRequestContent;
@@ -26,7 +24,7 @@ import java.io.IOException;
 public class MainControllerServlet extends HttpServlet {
 
     static Logger logger = Logger.getLogger(MainControllerServlet.class);
-    public void init() throws ResourceServletException {//инициализация log4j
+    public void init() throws ServletException {//initialization log4j
         ServletConfig config = this.getServletConfig();
         String filename = config.getInitParameter("init_log4j");
         if(filename != null){
@@ -41,10 +39,8 @@ public class MainControllerServlet extends HttpServlet {
             logger.info("request and response sended in prossesRequest() from doGet");
 
         }catch (ServletException e){
-            new ResourceServletException(e);
             logger.error(e.getMessage());
         }catch (IOException e){
-            new ResourceIOException(e);
             logger.error(e.getMessage());
         }
     }
@@ -55,33 +51,31 @@ public class MainControllerServlet extends HttpServlet {
             processRequest(request, response);
             logger.info("request and response sended in prossesRequest() from doPost");
         }catch (ServletException e){
-            new ResourceServletException(e);
             logger.error(e.getMessage());
         }catch (IOException e){
-            new ResourceIOException(e);
             logger.error(e.getMessage());
         }
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
-        String page = null;//страница на которую на которую перейдет приложение после запроса
+        String page = null;//page transition applications after request
         SessionRequestContent sessionRequest = new SessionRequestContent();
         sessionRequest.extractValue(request);
 
-        //определение команды пришедшей с jsp
+        //defining the command which came with jsp
         ActionFactory client = new ActionFactory();
         IActionCommand command = client.defineCommand(sessionRequest);
-        //вызов метода execute() и передача параметров классу-обработчику конкрутной задачи
-        page = command.execute(sessionRequest);//вернется страница ответа
-        sessionRequest.insertAttribute(request);//вставка атрибутов в request
+        //call method execute()
+        page = command.execute(sessionRequest);//return the response page
+        sessionRequest.insertAttribute(request);//paste attributes in request
         System.out.println(request.getAttribute("errorLoginPassMessage"));
         if(page != null){
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-            //вызов страницы ответа на запрос
+            //call responce page on request
             dispatcher.forward(request, response);
         }else {
-            //установка страницы с сообщением об ошибке
+            //set page with message about error
             page = ConfigurationManager.getProperty("path.page.index");
             request.getSession().setAttribute("nullPage", MessageManager.getProperty("message.nullpage"));
             response.sendRedirect(request.getContextPath() + page);
