@@ -7,10 +7,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<fmt:setLocale value="${lang}" scope="session"/>
+<fmt:setBundle basename="resources.pagescontent"/>
 <html>
 <head>
   <meta charset="UTF-8" />
-    <title>Show Test</title>
+    <title><fmt:message key="showTest.head.title"/></title>
   <script type="text/javascript" language="JavaScript" src="../js/timer.js"></script>
   <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
@@ -21,7 +24,7 @@
   <div id="timer">
     <p id="time"></p>
     <div id="endtime">
-      <p>Время закончилось</p>
+      <p><fmt:message key="showTest.body.endtime"/></p>
     </div>
   </div>
 
@@ -40,7 +43,7 @@
           </li>
         </c:forEach>
       </ol>
-      <button type="submit" class="btn btn-1 btn-1e" id="bcheck">Проверить</button>
+      <button type="submit" class="btn btn-1 btn-1e" id="bcheck"><fmt:message key="showTest.body.button.check"/></button>
     </form>
 
   </div>

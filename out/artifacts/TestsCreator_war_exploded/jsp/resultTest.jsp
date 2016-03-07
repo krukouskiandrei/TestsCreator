@@ -6,10 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<fmt:setLocale value="${lang}" scope="session"/>
+<fmt:setBundle basename="resources.pagescontent"/>
 <html>
 <head>
   <meta charset="UTF-8" />
-    <title>Result Test</title>
+    <title><fmt:message key="resultTest.head.title"/></title>
   <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
@@ -17,7 +20,8 @@
 <jsp:include page="static_elements/header.jsp"></jsp:include>
 
 <div id="result">
-  <p>Ваш результат: <span>${resultCheckTest}</span> из <span>${test.countQuestions}</span></p>
+  <p><fmt:message key="resultTest.body.result.part.one"/><span>${resultCheckTest}</span> <fmt:message key="resultTest.body.result.part.two"/> <span>${test.countQuestions}</span></p>
+
 </div>
 
 </body>

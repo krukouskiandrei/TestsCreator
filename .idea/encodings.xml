@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/bd/AbstractDAO.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/bd/TestDAO.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/bd/UserDAO.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/command/CheckTestCommand.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/command/CreateAllTestCommand.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/command/CreateQuestionCommand.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/command/CreateTestCommand.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/command/EmptyCommand.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/command/LoginCommand.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/command/RegistrationCommand.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/command/ShowTestCommand.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/command/TakeTestCommand.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/command/client/CommandEnum.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/command/factory/ActionFactory.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/command/factory/LogoutCommand.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/filter/EncodingFilter.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/function/CreatePasswordMD5.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/logic/CheckTestLogic.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/logic/LoginLogic.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/resource/ConfigurationManager.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/resource/MessageManager.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/servlets/MainControllerServlet.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/session/SessionRequestContent.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/subject/Entity.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/subject/Question.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/subject/Test.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/by/bsu/krukouski/testscreator/subject/User.java" charset="UTF-8" />
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/command/CheckTestCommand.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/command/CreateAllTestCommand.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/command/CreateQuestionCommand.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/command/CreateTestCommand.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/command/EmptyCommand.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/command/LoginCommand.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/command/RegistrationCommand.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/command/ShowTestCommand.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/command/TakeTestCommand.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/command/client/CommandEnum.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/command/factory/ActionFactory.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/command/factory/LogoutCommand.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/controller/MainControllerServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/dao/AbstractDAO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/dao/TestDAO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/dao/UserDAO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/filter/EncodingFilter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/function/CreatePasswordMD5.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/logic/CheckTestLogic.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/logic/LoginLogic.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/resource/ConfigurationManager.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/resource/MessageManager.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/session/SessionRequestContent.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/subject/Entity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/subject/Question.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/subject/Test.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/by/krukouski/testscreator/subject/User.java" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

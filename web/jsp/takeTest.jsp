@@ -7,10 +7,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<fmt:setLocale value="${lang}" scope="session"/>
+<fmt:setBundle basename="resources.pagescontent"/>
 <html>
 <head>
   <meta charset="UTF-8" />
-    <title>Show List Tests</title>
+    <title><fmt:message key="takeTest.head.title"/></title>
   <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
@@ -19,7 +22,7 @@
 
   <div id="list">
     <form name="ShowListTests" method="post" action="maincontroller">
-      <p>Выберите тест</p>
+      <p><fmt:message key="takeTest.body.form.choose"/></p>
     <ul>
       <c:forEach var="elem" items="${listTests}" varStatus="status">
         <li>
