@@ -13,9 +13,13 @@
 <head>
   <meta charset="UTF-8" />
   <title><fmt:message key="index.head.title"/></title>
-  <link rel="stylesheet" type="text/css" href="../css/firstpage.css">
+  <link rel="stylesheet" type="text/css" href="css/header.css">
+  <link rel="stylesheet" type="text/css" href="css/firstpage.css">
 </head>
 <body>
+
+<jsp:include page="jsp/static_elements/headerIndex.jsp"></jsp:include>
+
 <form>
   <p>
     <a href="maincontroller?command=passfreetest"><fmt:message key="index.body.pass.test"/></a>

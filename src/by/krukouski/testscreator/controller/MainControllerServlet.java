@@ -69,7 +69,8 @@ public class MainControllerServlet extends HttpServlet {
         //call method execute()
         page = command.execute(sessionRequest);//return the response page
         sessionRequest.insertAttribute(request);//paste attributes in request
-        System.out.println(request.getAttribute("errorLoginPassMessage"));
+        //System.out.println(request.getAttribute("errorLoginPassMessage"));
+        request.getSession().setAttribute("currentPage", page);
         if(page != null){
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
             //call responce page on request

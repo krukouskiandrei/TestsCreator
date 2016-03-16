@@ -8,15 +8,15 @@ import by.krukouski.testscreator.subject.Test;
  */
 public class CreateAllTestLogic extends Thread {
     private Test test;
-    private Integer id_user;
-    public CreateAllTestLogic(Test test, Integer id_user){
+    private Integer idUser;
+    public CreateAllTestLogic(Test test, Integer idUser){
         this.test = test;
-        this.id_user = id_user;
+        this.idUser = idUser;
     }
     @Override
     public void run(){
         TestDAO testDAO = new TestDAO();
-        testDAO.createTest(this.test, this.id_user);
+        testDAO.createTest(this.test, this.idUser);
         testDAO.close();
     }
 

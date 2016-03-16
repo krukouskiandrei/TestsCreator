@@ -13,9 +13,11 @@
 <head>
     <meta charset="UTF-8" />
     <title><fmt:message key="login.head.title"/></title>
+    <link rel="stylesheet" type="text/css" href="css/header.css">
     <link rel="stylesheet" type="text/css" href="../css/login.css">
 </head>
 <body>
+  <jsp:include page="static_elements/headerIndex.jsp"></jsp:include>
   <form name="LoginForm" method="post" action="maincontroller" class="login">
     <input type="hidden" name="command" value="login"/>
     <p>
@@ -31,7 +33,6 @@
       <button type="submit" class="login-button"><fmt:message key="login.body.enter"/> </button>
     </p>
   </form>
-
-
+  <jsp:include page="static_elements/footer.jsp"></jsp:include>
 </body>
 </html>

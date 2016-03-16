@@ -13,10 +13,45 @@
 <head>
   <meta charset="UTF-8" />
     <title><fmt:message key="createTest.head.title"/></title>
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <link rel="stylesheet" type="text/css" href="../css/createTest.css">
+  <link rel="stylesheet" type="text/css" href="../css/header.css">
 </head>
 <body>
-<jsp:include page="static_elements/header.jsp"></jsp:include>
+  <jsp:include page="static_elements/header.jsp"></jsp:include>
+  <form name="CreateTest" method="post" action="maincontroller">
+    <input type="hidden" name="command" value="create">
+    <p class="title"><fmt:message key="createTest.body.title"/></p>
+    <p>
+      <label><fmt:message key="createTest.body.form.subject"/></label>
+      <select size="1" name="subject" required>
+        <option selected disabled><fmt:message key="createTest.body.form.subject.title"/></option>
+        <option value="<fmt:message key="createTest.body.form.subject.s1"/>"><fmt:message key="createTest.body.form.subject.s1"/></option>
+        <option value="<fmt:message key="createTest.body.form.subject.s2"/>"><fmt:message key="createTest.body.form.subject.s2"/></option>
+        <option value="<fmt:message key="createTest.body.form.subject.s3"/>"><fmt:message key="createTest.body.form.subject.s3"/></option>
+        <option value="<fmt:message key="createTest.body.form.subject.s4"/>"><fmt:message key="createTest.body.form.subject.s4"/></option>
+        <option value="<fmt:message key="createTest.body.form.subject.s5"/>"><fmt:message key="createTest.body.form.subject.s5"/></option>
+        <option value="<fmt:message key="createTest.body.form.subject.s6"/>"><fmt:message key="createTest.body.form.subject.s6"/></option>
+        <option value="<fmt:message key="createTest.body.form.subject.s7"/>"><fmt:message key="createTest.body.form.subject.s7"/></option>
+        <option value="<fmt:message key="createTest.body.form.subject.s8"/>"><fmt:message key="createTest.body.form.subject.s8"/></option>
+      </select>
+    </p>
+    <p>
+      <label><fmt:message key="createTest.body.form.topic"/></label>
+      <input type="text" autocomplete="off" required name="topic" value=""/>
+    </p>
+    <p>
+      <label><fmt:message key="createTest.body.form.time"/></label>
+      <input type="number" name="time" value="1" min="1" max="600" step="1">
+      <span><fmt:message key="createTest.body.form.time.title"/></span>
+    </p>
+    <p>
+      <button type="submit"><fmt:message key="createTest.body.form.button.createtest"/></button>
+    </p>
+  </form>
+
+  <jsp:include page="static_elements/footer.jsp"></jsp:include>
+
+<%--
 <div class="create_test">
   <h1><fmt:message key="createTest.body.title"/></h1>
   <form name="CreateTest" method="post" action="maincontroller">
@@ -28,6 +63,7 @@
   </form>
 
 </div>
+--%>
 
 </body>
 </html>

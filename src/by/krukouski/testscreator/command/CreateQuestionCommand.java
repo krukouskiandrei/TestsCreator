@@ -13,16 +13,16 @@ import by.krukouski.testscreator.subject.Test;
 public class CreateQuestionCommand implements IActionCommand {
 
     private static final String PARAM_VALUE_QUESTION = "value_question";
-    private static final String PARAM_CORRECT_ANSWER = "correct_answer";
+    private static final String PARAM_CORRECT_ANSWER = "correct";
     private  static final String PARAM_ANSWER = "answer";
     @Override
     public String execute(SessionRequestContent request){
         String page = null;
-        String value_question = request.getRequstParameters(PARAM_VALUE_QUESTION)[0];
-        String[] correct_answer = request.getRequstParameters(PARAM_CORRECT_ANSWER);
+        String valueQuestion = request.getRequstParameters(PARAM_VALUE_QUESTION)[0];
+        String[] correctAnswer = request.getRequstParameters(PARAM_CORRECT_ANSWER);
         String[] answers  = request.getRequstParameters(PARAM_ANSWER);
         CreateQuestionLogic createQuestionLogic = new CreateQuestionLogic();
-        Question question = createQuestionLogic.createQuestion(value_question, correct_answer, answers);
+        Question question = createQuestionLogic.createQuestion(valueQuestion, correctAnswer, answers);
         if(question != null){
             Test test = (Test) request.getSessionAttributes("newtest");
             test.setQuestion(question);

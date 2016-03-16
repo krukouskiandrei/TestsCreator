@@ -31,6 +31,7 @@ public class TestDAO extends AbstractDAO<Integer, Test> {
     public static final String SQL_INSERT_TEST_BY_USER = "INSERT INTO test(id_user, topic, subject, time) VALUES(?, ?, ?, ?)";//insert test in database
     public static final String SQL_INSERT_QUESTION_BY_TEST = "INSERT INTO question(id_test, value_question) VALUES(?, ?)";//insert questio in database
     public static final String SQL_INSERT_ANSWER_BY_QUESTION = "INSERT INTO answer(id_question, value_answer, correct_answer) VALUES(?, ?, ?)";//insert answer in database
+    public static final String SQL_SELECT_TEST_BY_USER = "SELECT id, subject, topic, time FROM test WHERE id_user = ?";//select tests by user_id
 
     public TestDAO(){
         this.connector = new WrapperConnector();
@@ -99,11 +100,34 @@ public class TestDAO extends AbstractDAO<Integer, Test> {
         }
         return test;
     }
-    public boolean createTest(Test test, Integer id_user){//creating test
+    public List<Test> findTestByUserId(Integer userId){
+        List<Test> tests = new ArrayList<>();
+        PreparedStatement statement = null;
+        try{
+            statement = connector.getPreparedStatement(SQL_SELECT_TEST_BY_USER);
+            statement.setString(1, userId.toString());
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Test test = new Test();
+                test.setId(resultSet.getInt("id"));
+                test.setSubject(resultSet.getString("subject"));
+                test.setTopic(resultSet.getString("topic"));
+                test.setTime(resultSet.getInt("time"));
+                tests.add(test);
+            }
+        }catch (SQLException e){
+            logger.error(e.getMessage());
+        }finally {
+            this.closeStatement(statement);
+        }
+        return tests;
+    }
+
+    public boolean createTest(Test test, Integer idUser){//creating test
         PreparedStatement statement = null;
         try {
             statement = connector.getPreparedStatement(SQL_INSERT_TEST_BY_USER);
-            statement.setInt(1, id_user);
+            statement.setInt(1, idUser);
             statement.setString(2, test.getTopic());
             statement.setString(3, test.getSubject());
             statement.setInt(4, test.getTime());
@@ -113,26 +137,26 @@ public class TestDAO extends AbstractDAO<Integer, Test> {
             statement.setString(2, test.getSubject());
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
-            Integer id_test = resultSet.getInt("id");
+            Integer idTest = resultSet.getInt("id");
             List<Question> listQuestions = test.getQuestions();
             Iterator<Question> iteratorQuestions = listQuestions.iterator();
             while (iteratorQuestions.hasNext()){
                 Question question = iteratorQuestions.next();
                 statement = connector.getPreparedStatement(SQL_INSERT_QUESTION_BY_TEST);
-                statement.setInt(1, id_test);
+                statement.setInt(1, idTest);
                 statement.setString(2, question.getValueQuestion());
                 statement.executeUpdate();
                 statement = connector.getPreparedStatement(SQL_SELECT_IDQUESTION_BY_VALUEQUESTION);
                 statement.setString(1, question.getValueQuestion());
                 resultSet = statement.executeQuery();
                 resultSet.next();
-                Integer id_question = resultSet.getInt("id");
+                Integer idQuestion = resultSet.getInt("id");
                 List<Answer> listAnswers = question.getAnswers();
                 Iterator<Answer> iteratorAnswers = listAnswers.iterator();
                 while (iteratorAnswers.hasNext()){
                     Answer answer = iteratorAnswers.next();
                     statement = connector.getPreparedStatement(SQL_INSERT_ANSWER_BY_QUESTION);
-                    statement.setInt(1, id_question);
+                    statement.setInt(1, idQuestion);
                     statement.setString(2, answer.getValueAnswer());
                     statement.setBoolean(3, answer.getCorrectAnswer());
                     statement.executeUpdate();
@@ -144,8 +168,6 @@ public class TestDAO extends AbstractDAO<Integer, Test> {
         }finally {
             this.closeStatement(statement);
         }
-
-
         return true;
     }
     @Override

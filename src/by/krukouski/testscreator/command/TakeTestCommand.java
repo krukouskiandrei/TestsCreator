@@ -18,7 +18,7 @@ public class TakeTestCommand implements IActionCommand {
         String page = null;
         TakeTestLogic takeTestLogic = new TakeTestLogic();
         List<Test> listTests = takeTestLogic.showAllTests();
-        if(listTests != null){
+        if(listTests.isEmpty() != true){
             request.setRequestAttributes("listTests", listTests);
             page = ConfigurationManager.getProperty("path.page.takeTest");
         }else {

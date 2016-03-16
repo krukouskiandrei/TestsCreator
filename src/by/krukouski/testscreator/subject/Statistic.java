@@ -5,31 +5,34 @@ package by.krukouski.testscreator.subject;
  */
 public class Statistic {
 
-    private int takeTests;
-    private int rightTests;
+    private String nameTest;//test name
+    private Integer score;//number of points
+    private String time;//passing time
 
     public Statistic(){}
-    public Statistic(int takeTests, int rightTests){
-        this.rightTests = rightTests;
-        this.takeTests = takeTests;
+    public Statistic(String nameTest, Integer score, String time){
+        this.nameTest = nameTest;
+        this.score = score;
+        this.time = time;
     }
-    public int getTakeTests(){
-        return takeTests;
+    public void setNameTest(String nameTest){
+        this.nameTest = nameTest;
     }
-    public int getRightTests(){
-        return rightTests;
+    public void setScore(Integer score){
+        this.score = score;
     }
-    public void setTakeTests(int takeTests){
-        this.takeTests = takeTests;
+    public void setTime(String time){
+        this.time = time;
     }
-    public void setRightTests(int rightTests){
-        this.rightTests = rightTests;
+    public String getNameTest(){
+        return nameTest;
     }
-    public void addTakeTests(){
-        takeTests++;
+    public Integer getScore(){
+        return score;
     }
-    public void addRighTasts(){
-        rightTests++;
+    public String getTime(){
+        return time;
     }
+
 
 }

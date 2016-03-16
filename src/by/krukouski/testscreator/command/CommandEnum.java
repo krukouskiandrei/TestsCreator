@@ -1,8 +1,5 @@
 package by.krukouski.testscreator.command;
 
-import by.krukouski.testscreator.command.*;
-import by.krukouski.testscreator.command.LogoutCommand;
-
 /**
  * Created by Krukouski Andrei on 09.12.2015.
  */
@@ -81,6 +78,26 @@ public enum  CommandEnum {//list all commands
     PASSFREETEST{
         {
             this.command = new PassFreeTestCommand();
+        }
+    },
+    FORWARDTOINDEXPAGE{
+        {
+            this.command = new ForwardToIndexPage();
+        }
+    },
+    STATISTICUSER{
+        {
+            this.command = new StatisticUserCommand();
+        }
+    },
+    CHANGETEST{
+        {
+            this.command = new ChangeTestCommand();
+        }
+    },
+    SHOWUSER{
+        {
+            this.command = new ShowUserCommand();
         }
     };
 

@@ -27,7 +27,11 @@ public class LoginCommand implements IActionCommand {//perform authentication co
             request.setRequestAttributes("userName", login);
             request.setRequestAttributes("user", user);
             //defining the way to main.jsp
-            page = ConfigurationManager.getProperty("path.page.main");
+            if(user.getAdmin()){
+                page = ConfigurationManager.getProperty("path.page.mainAdmin");
+            }else {
+                page = ConfigurationManager.getProperty("path.page.main");
+            }
         }else {
             request.setRequestAttributes("errorLoginPassMessage",
                     MessageManager.getProperty("message.loginerror"));

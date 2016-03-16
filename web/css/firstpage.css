@@ -6,7 +6,7 @@ body{
     padding: 0;
 }
 form{
-    margin: 16% auto;
+    margin: 10% auto 17%;
     width: 70%;
     font-family: arial, helvetica, sans-serif;
     font-size: 13px;
@@ -72,7 +72,7 @@ form p a:active:after{
     height: 130%;
     opacity: 1;
 }
-footer{
+/*footer{
     position: relative;
     width: 100%;
     bottom: 0;
@@ -92,5 +92,5 @@ footer ul li{
 }
 footer ul li a img{
     width: 100%;
-}
+}*/
 

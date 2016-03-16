@@ -15,6 +15,7 @@
   <meta charset="UTF-8" />
     <title><fmt:message key="takeTest.head.title"/></title>
   <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <link rel="stylesheet" type="text/css" href="../css/header.css">
 </head>
 <body>
 
@@ -35,6 +36,6 @@
    </ul>
     </form>
   </div>
-
+<jsp:include page="static_elements/footer.jsp"></jsp:include>
 </body>
 </html>

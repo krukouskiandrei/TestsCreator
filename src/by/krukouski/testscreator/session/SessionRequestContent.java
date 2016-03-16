@@ -110,8 +110,6 @@ public class SessionRequestContent  {//class to store the contents of the reques
 
     }
 
-
-
     //redirect  toString method
     @Override
     public String toString(){

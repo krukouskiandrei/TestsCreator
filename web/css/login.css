@@ -6,7 +6,7 @@ body{
     padding: 0;
 }
 form{
-    margin: 200px auto;
+    margin: 9% auto;
     width: 30%;
     font-family: arial, helvetica, sans-serif;
     font-size: 13px;
@@ -107,5 +107,4 @@ form p button:active:after{
     height: 130%;
     opacity: 1;
 }
-
 

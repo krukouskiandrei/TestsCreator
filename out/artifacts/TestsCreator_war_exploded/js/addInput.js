@@ -1,3 +1,4 @@
+var flac = 6;
 function addCAnswer(){//добавить поле для ввода правильного ответа
     var thisElement = document.querySelector('#addCorrectAnswer');
     var theInput = document.createElement('input');
@@ -24,10 +25,17 @@ function createATest(){//создать тест
 }
 function addA(){//добавить поле для ввода варианта ответа
     var thisElement = document.querySelector('#addAnswer');
+    var theCheckbox = document.createElement('input');
+    theCheckbox.type = 'checkbox';
+    theCheckbox.setAttribute('name', 'correct');
+    theCheckbox.setAttribute('value', flac);
+    flac++;
+    thisElement.parentNode.insertBefore(theCheckbox, thisElement.previousSibling);
     var theInput = document.createElement('input');
     theInput.type = 'text';
-    theInput.autocomplete = 'off';
     theInput.setAttribute('name', 'answer');
     theInput.setAttribute('value', '');
+    theInput.autocomplete = 'off';
     thisElement.parentNode.insertBefore(theInput, thisElement.previousSibling);
+
 }

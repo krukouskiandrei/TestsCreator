@@ -19,4 +19,11 @@ public class TakeTestLogic {
 
     }
 
+    public List<Test> findTestByUser(Integer idUser){
+        TestDAO testDAO = new TestDAO();
+        List<Test> tests = testDAO.findTestByUserId(idUser);
+        testDAO.close();
+        return tests;
+    }
+
 }

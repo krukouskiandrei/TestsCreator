@@ -13,11 +13,12 @@
 <head>
   <meta charset="UTF-8" />
     <title><fmt:message key="registration.head.title"/></title>
+  <link rel="stylesheet" type="text/css" href="../css/header.css">
   <link rel="stylesheet" type="text/css" href="../css/registration.css">
   <script type="text/javascript" src="../js/checkpassword.js"></script>
 </head>
 <body>
-
+<jsp:include page="static_elements/headerIndex.jsp"></jsp:include>
   <form name="Registration" method="post" action="maincontroller" class="registration">
     <input type="hidden" name="command" value="createuser">
     <p class="title"><fmt:message key="registration.body.form.title"/></p>
@@ -56,6 +57,6 @@
       <button type="submit"><fmt:message key="registration.body.form.button.reg"/></button>
     </p>
   </form>
-
+<jsp:include page="static_elements/footer.jsp"></jsp:include>
 </body>
 </html>

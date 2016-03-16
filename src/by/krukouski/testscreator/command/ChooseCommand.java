@@ -9,12 +9,18 @@ import by.krukouski.testscreator.session.SessionRequestContent;
 public class ChooseCommand implements IActionCommand {
 
     private static final String PARAM_LANG = "lang";
+    private static final String PARAM_CURRENT_PAGE = "currentPage";
 
-    public String execute(SessionRequestContent request){
+    public String execute(SessionRequestContent request) {
         String page = null;
         String lang = request.getRequstParameters(PARAM_LANG)[0];
         request.setRequestAttributes("lang", lang);
-        page = ConfigurationManager.getProperty("path.page.index");
+        try {
+            String currentPage = (String)request.getSessionAttributes(PARAM_CURRENT_PAGE);
+            page = currentPage;
+        }catch (NullPointerException e){
+            page = ConfigurationManager.getProperty("path.page.index");
+        }
         return page;
     }
 

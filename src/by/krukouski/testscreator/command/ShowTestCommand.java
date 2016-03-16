@@ -19,9 +19,9 @@ public class ShowTestCommand implements IActionCommand {
     @Override
     public String execute(SessionRequestContent request){
         String page = null;
-        String id_String = request.getRequstParameters(PARAM_TEST)[0];
+        String idString = request.getRequstParameters(PARAM_TEST)[0];
         try {
-            Integer id = new Integer(id_String);
+            Integer id = new Integer(idString);
             ShowTestLogic showTestLogic = new ShowTestLogic();
             Test test = showTestLogic.showAllTest(id);
             if(test != null){

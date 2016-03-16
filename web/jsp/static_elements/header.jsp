@@ -8,8 +8,18 @@
 --%>
 <fmt:setLocale value="${lang}" scope="session"/>
 <fmt:setBundle basename="resources.pagescontent"/>
-<div id="menu">
+<%--<div id="menu">
   <form name="menu" method="post" action="maincontroller">
     <button name="command" value="forwardtomainjsp" class="btn btn-1 btn-1d"><fmt:message key="header.button.name"/> </button>
   </form>
-</div>
+</div>--%>
+<header>
+  <div class="logo">
+    <a href="maincontroller?command=forwardtomainjsp"><img src="../../css/image/logo.jpg"></a>
+  </div>
+  <ul>
+    <li><a href="maincontroller?command=choose&lang=en"><img src="../../css/image/england_flag.png"></a></li>
+    <li><a href="maincontroller?command=choose&lang=ru"><img src="../../css/image/russia_flag.png"></a></li>
+  </ul>
+</header>
+<div class="clearfix"></div>

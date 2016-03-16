@@ -14,7 +14,11 @@ public class ForwardToMainJSP implements IActionCommand {
         String page = null;
         User user = (User) request.getSessionAttributes(PARAM_USER);
         if(user != null){
-            page = ConfigurationManager.getProperty("path.page.main");
+            if(user.getAdmin()){
+                page = ConfigurationManager.getProperty("path.page.mainAdmin");
+            }else {
+                page = ConfigurationManager.getProperty("path.page.main");
+            }
         }else {
             page = ConfigurationManager.getProperty("path.page.login");
         }

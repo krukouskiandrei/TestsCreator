@@ -14,6 +14,7 @@
     <meta charset="UTF-8" />
     <title><fmt:message key="testCreated.head.title"/></title>
   <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/header.css">
 </head>
 <body>
 
@@ -22,6 +23,6 @@
 <div id="result">
   <p><fmt:message key="testCreated.body.result"/></p>
 </div>
-
+<jsp:include page="static_elements/footer.jsp"></jsp:include>
 </body>
 </html>

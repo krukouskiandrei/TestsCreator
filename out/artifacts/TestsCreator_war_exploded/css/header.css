@@ -1,0 +1,46 @@
+header{
+    position: relative;
+    width: 98%;
+    bottom: 0;
+    margin: 0;
+    padding: 1%;
+}
+header ul{
+    float:right;
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
+    width: 25%;
+}
+header ul li{
+    padding: 0 3%;
+    display: inline-block;
+    width: 35%;
+}
+header ul li a img{
+    width: 100%;
+}
+.clearfix{
+    clear:both;
+}
+header .logo{
+    margin: 5%;
+    display: inline;
+}
+header .logo a img{
+    width:30%;
+}
+footer{
+    border-top: 1px solid rgba(0, 0, 0, 0.21);
+    width: 96%;
+    margin: 2% 0 1%;
+    padding: 2%;
+}
+footer p{
+    width: 20%;
+    margin: 0 auto;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 15px;
+    color: #222;
+    font-weight: bold;
+}

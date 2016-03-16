@@ -14,6 +14,7 @@
   <meta charset="UTF-8" />
     <title><fmt:message key="resultTest.head.title"/></title>
   <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <link rel="stylesheet" type="text/css" href="../css/header.css">
 </head>
 <body>
 
@@ -23,6 +24,6 @@
   <p><fmt:message key="resultTest.body.result.part.one"/><span>${resultCheckTest}</span> <fmt:message key="resultTest.body.result.part.two"/> <span>${test.countQuestions}</span></p>
 
 </div>
-
+<jsp:include page="static_elements/footer.jsp"></jsp:include>
 </body>
 </html>
