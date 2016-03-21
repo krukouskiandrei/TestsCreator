@@ -10,7 +10,7 @@ import by.krukouski.testscreator.subject.Test;
 /**
  * Created by Krukouski Andrei on 02.01.2016.
  */
-public class CreateQuestionCommand implements IActionCommand {
+public class CreateQuestionCommand implements IActionCommand {//create Question
 
     private static final String PARAM_VALUE_QUESTION = "value_question";
     private static final String PARAM_CORRECT_ANSWER = "correct";
@@ -23,7 +23,7 @@ public class CreateQuestionCommand implements IActionCommand {
         String[] answers  = request.getRequstParameters(PARAM_ANSWER);
         CreateQuestionLogic createQuestionLogic = new CreateQuestionLogic();
         Question question = createQuestionLogic.createQuestion(valueQuestion, correctAnswer, answers);
-        if(question != null){
+        if(question.getValueQuestion() != null){
             Test test = (Test) request.getSessionAttributes("newtest");
             test.setQuestion(question);
             request.setRequestAttributes("newtest", test);

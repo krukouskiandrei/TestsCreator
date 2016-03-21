@@ -49,23 +49,6 @@
   </p>
 </form>
 
-
-<%--<div id="create_question">
-  <form name="CreateQuestion" method="post" action="maincontroller">
-    <span><fmt:message key="create.body.form.question"/></span>
-    <textarea name="value_question" cols="57" rows="3"></textarea>
-    <span><fmt:message key="create.body.form.answer"/></span>
-    <input type="text" name="correct_answer" autocomplete="off" required>
-    &lt;%&ndash;<button onclick="addCAnswer()" id="addCorrectAnswer">Добавить ответ</button>&ndash;%&gt;
-    <input type="button" value="Добавить ответ" id="addCorrectAnswer" onclick="addCAnswer()">
-    <span><fmt:message key="create.body.form.panswer"/></span>
-    <input type="text" name="answer" value="" autocomplete="off" required>
-    <input type="button" value="Вариант ответа" id="addAnswer" onclick="addA()">
-    <br>
-    <button type="submit" id="createQuestion" onclick="createQ()"><fmt:message key="create.body.form.bcreate.question"/></button>
-    <button type="submit" id="createAllTest" onclick="createATest()"><fmt:message key="create.body.form.bcreate.test"/></button>
-  </form>
-</div>--%>
 <jsp:include page="static_elements/footer.jsp"></jsp:include>
 </body>
 </html>

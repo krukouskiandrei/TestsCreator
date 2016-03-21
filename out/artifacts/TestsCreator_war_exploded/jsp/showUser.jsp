@@ -27,8 +27,8 @@
     <ul>
       <c:forEach var="elem" items="${listUsers}" varStatus="status">
         <li>
-          <a href="maincontroller?command=deleteTest&idtest=${elem.id}" class="cross"><img src="../css/image/cross1.png"></a>
-          <a href="maincontroller?command=showTest&idtest=${elem.id}" class="title">
+          <a href="maincontroller?command=deleteUser&iduser=${elem.id}" class="cross"><img src="../css/image/cross1.png"></a>
+          <a href="maincontroller?command=statisticUser&iduser=${elem.id}" class="title">
             <strong><c:out value="${elem.lastname}"/> <c:out value="${elem.firstname}"/></strong>
             <span><c:out value="${elem.email}"/></span>
           </a>

@@ -25,14 +25,16 @@ public class CheckTestCommand implements IActionCommand {//the test checking
         CheckTestLogic checkTest = new CheckTestLogic();
         Integer result = checkTest.checkTest(request);
         User user = (User) request.getSessionAttributes(PARAM_USER);
-        Test test = (Test) request.getSessionAttributes("test");//add data to statistic table
-        UserDAO userDAO = new UserDAO();
-        Date d = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String data = format.format(d);
-        Statistic statistic = new Statistic(test.getTopic(), result, data);
-        userDAO.createStatisticTabel(user.getId(), statistic);
-        userDAO.close();
+        if(user != null){
+            Test test = (Test) request.getSessionAttributes("test");//add data to statistic table
+            UserDAO userDAO = new UserDAO();
+            Date d = new Date();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            String data = format.format(d);
+            Statistic statistic = new Statistic(test.getTopic(), result, data);
+            userDAO.createStatisticTabel(user.getId(), statistic);
+            userDAO.close();
+        }
         request.setRequestAttributes("resultCheckTest", result);
         page = ConfigurationManager.getProperty("path.page.resultTest");
         return page;

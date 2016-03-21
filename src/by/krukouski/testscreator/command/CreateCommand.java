@@ -10,9 +10,7 @@ import org.apache.log4j.Logger;
 /**
  * Created by Krukouski Andrei on 02.01.2016.
  */
-public class CreateCommand implements IActionCommand {
-
-    static Logger logger = Logger.getLogger(CreateCommand.class);
+public class CreateCommand implements IActionCommand {//create test
 
     private static final String PARAM_TOPIC_TEST = "topic";
     private static final String PARAM_SUBJECT_TEST = "subject";
@@ -23,7 +21,6 @@ public class CreateCommand implements IActionCommand {
         String topic = request.getRequstParameters(PARAM_TOPIC_TEST)[0];
         String subject = request.getRequstParameters(PARAM_SUBJECT_TEST)[0];
         Integer time = new Integer(request.getRequstParameters(PARAM_TIME_TEST)[0]);
-        try {
             CreateLogic createLogic = new CreateLogic();
             Test test = createLogic.createNewTest(topic, subject, time);
             if(test != null){
@@ -34,9 +31,7 @@ public class CreateCommand implements IActionCommand {
                         MessageManager.getProperty("message.create"));
                 page = ConfigurationManager.getProperty("path.page.createTest");
             }
-        }catch (Exception e){
-            logger.error(e.getMessage());
-        }
+
 
 
         return page;

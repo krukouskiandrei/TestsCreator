@@ -1,5 +1,6 @@
 package by.krukouski.testscreator.resource;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -7,7 +8,7 @@ import java.util.ResourceBundle;
  */
 public class MessageManager {//show messages for system
     // class extract information with file messages.properties
-    private final static ResourceBundle resourceBundle = ResourceBundle.getBundle("resources.messages");
+    private final static ResourceBundle resourceBundle = ResourceBundle.getBundle("resources.messages", Locale.getDefault());
 
     private MessageManager() { }
 

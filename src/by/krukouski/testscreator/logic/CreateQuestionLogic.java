@@ -31,17 +31,6 @@ public class CreateQuestionLogic {
                 question.setAnswer(answer);
             }
         }
-
-
-        /*for(int i = 0; i < answers.length; i++){
-            Answer answer = new Answer(answers[i]);
-            question.setAnswer(answer);
-        }
-        for(int i = 0; i < correctAnswer.length; i++){
-            Answer answer = new Answer(correctAnswer[i], true);
-            question.setAnswer(answer);
-        }*/
-
         return question;
     }
 

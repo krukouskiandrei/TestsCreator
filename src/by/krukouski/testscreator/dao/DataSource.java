@@ -11,12 +11,12 @@ public class DataSource {
 
     static ConnectionPool pool = new ConnectionPool();
     //get the connetion with Pool
-    public static Connection getConnection() throws ClassNotFoundException, SQLException{
-        Connection connection = pool.getConnectionFromPool();
+    public static WrapperConnector getConnection() throws ClassNotFoundException, SQLException{
+        WrapperConnector connection = pool.getConnectionFromPool();
         return connection;
     }
     //return the connetion to Pool
-    public static void returnConnection(Connection connection){
+    public static void returnConnection(WrapperConnector connection){
         pool.returnConnectionToPool(connection);
     }
 

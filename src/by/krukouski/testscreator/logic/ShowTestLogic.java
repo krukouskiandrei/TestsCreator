@@ -1,6 +1,7 @@
 package by.krukouski.testscreator.logic;
 
 import by.krukouski.testscreator.dao.TestDAO;
+import by.krukouski.testscreator.exception.TestDAOException;
 import by.krukouski.testscreator.subject.Test;
 
 /**
@@ -10,12 +11,14 @@ public class ShowTestLogic {
 
     public Test showAllTest(Integer id){
 
-        TestDAO testDAO = new TestDAO();
-        Test test = testDAO.findEntityById(id);
-        testDAO.close();
-        if(test == null)
+        try{
+            TestDAO testDAO = new TestDAO();
+            Test test = testDAO.findEntityById(id);
+            testDAO.close();
+            return test;
+        }catch (TestDAOException e){
             return null;
-        return test;
+        }
     }
 
 }

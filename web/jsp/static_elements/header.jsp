@@ -21,5 +21,9 @@
     <li><a href="maincontroller?command=choose&lang=en"><img src="../../css/image/england_flag.png"></a></li>
     <li><a href="maincontroller?command=choose&lang=ru"><img src="../../css/image/russia_flag.png"></a></li>
   </ul>
+  <div class="clearfix"></div>
+  <form class="logout" name="menu" method="post" action="maincontroller">
+    <button name="command" value="logout"><fmt:message key="header.logout"/></button>
+  </form>
 </header>
-<div class="clearfix"></div>
+

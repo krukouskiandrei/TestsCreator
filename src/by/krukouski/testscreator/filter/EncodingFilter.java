@@ -6,6 +6,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
 import java.io.IOException;
+import java.util.Locale;
 
 /**
  * Created by Krukouski Andrei on 02.01.2016.
@@ -30,6 +31,8 @@ public class EncodingFilter implements Filter {
                 request.setCharacterEncoding(code);
                 response.setCharacterEncoding(code);
             }
+            /*Locale.setDefault(new Locale("ru"));
+            System.out.println(Locale.getDefault());*/
             filterChain.doFilter(request, response);
         }catch (IOException | ServletException e){
             logger.error(e.getMessage());

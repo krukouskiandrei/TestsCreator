@@ -1,7 +1,7 @@
 package by.krukouski.testscreator.dao;
 
-import by.krukouski.testscreator.exception.ResourceSQLExeption;
-import by.krukouski.testscreator.exception.ResourceUnsupportedOperationExeption;
+import by.krukouski.testscreator.exception.ResourceUnsupportedOperationException;
+import by.krukouski.testscreator.exception.TestDAOException;
 import by.krukouski.testscreator.subject.Answer;
 import by.krukouski.testscreator.subject.Question;
 import by.krukouski.testscreator.subject.Test;
@@ -32,12 +32,22 @@ public class TestDAO extends AbstractDAO<Integer, Test> {
     public static final String SQL_INSERT_QUESTION_BY_TEST = "INSERT INTO question(id_test, value_question) VALUES(?, ?)";//insert questio in database
     public static final String SQL_INSERT_ANSWER_BY_QUESTION = "INSERT INTO answer(id_question, value_answer, correct_answer) VALUES(?, ?, ?)";//insert answer in database
     public static final String SQL_SELECT_TEST_BY_USER = "SELECT id, subject, topic, time FROM test WHERE id_user = ?";//select tests by user_id
-
+    public static final String SQL_DELETE_TEST_BY_ID = "DELETE FROM test WHERE id = ?";//delete test by id
+    public static final String SQL_DELETE_TESTS_BY_USERID = "DELETE FROM test WHERE id_user = ?";//delete tests by user id
+    public static final String SQL_DELETE_QUESTION_BY_ID = "DELETE FROM question WHERE id = ?";//delete question by id
+    public static final String SQL_DELETE_QUESTIONS_BY_TESTID = "DELETE FROM question WHERE id_test = ?";//delete questions by test id
+    public static final String SQL_DELETE_ANSWER_BY_ID = "DELETE FROM answer WHERE id = ?";//delete answer by id
+    public static final String SQL_DELETE_ANSWERS_BY_QUESTIONID = "DELETE FROM answer WHERE id_question = ?";//delete answers by question id
+    public static final String SQL_UPDATE_TEST = "UPDATE test SET subject = ?, topic = ?, time = ? WHERE id = ?";//update test by id
     public TestDAO(){
-        this.connector = new WrapperConnector();
+        try{
+            this.connector = DataSource.getConnection();
+        }catch (ClassNotFoundException | SQLException e){
+            logger.error(e.getMessage());
+        }
     }
     @Override
-    public List<Test> findAll() {//get list all tests
+    public List<Test> findAll() throws TestDAOException{//get list all tests
 
         List<Test> tests = new ArrayList<>();
         Statement statement = null;
@@ -57,11 +67,13 @@ public class TestDAO extends AbstractDAO<Integer, Test> {
         }finally {
             this.closeStatement(statement);
         }
-
+        if(tests.isEmpty()){
+            throw new TestDAOException("no tests");
+        }
         return tests;
     }
     @Override
-    public Test findEntityById(Integer id){//searching test by id
+    public Test findEntityById(Integer id) throws TestDAOException{//searching test by id
         Test test = new Test();
         PreparedStatement statement = null;
         try{
@@ -98,9 +110,12 @@ public class TestDAO extends AbstractDAO<Integer, Test> {
         }finally {
             this.closeStatement(statement);
         }
+        if(test.getSubject() == null){
+            throw new TestDAOException("no test");
+        }
         return test;
     }
-    public List<Test> findTestByUserId(Integer userId){
+    public List<Test> findTestByUserId(Integer userId) throws TestDAOException{
         List<Test> tests = new ArrayList<>();
         PreparedStatement statement = null;
         try{
@@ -119,6 +134,9 @@ public class TestDAO extends AbstractDAO<Integer, Test> {
             logger.error(e.getMessage());
         }finally {
             this.closeStatement(statement);
+        }
+        if(tests.isEmpty()){
+            throw new TestDAOException("no tests");
         }
         return tests;
     }
@@ -164,28 +182,143 @@ public class TestDAO extends AbstractDAO<Integer, Test> {
             }
         }catch (SQLException e){
             logger.error(e.getMessage());
-            return false;
+        }finally {
+            this.closeStatement(statement);
+        }
+        return true;
+    }
+    public boolean deleteTestsByUserId(Integer idUser){
+        PreparedStatement statement = null;
+        try{
+            List<Test> tests = findTestByUserId(idUser);
+            Iterator<Test> iterator = tests.iterator();
+            while (iterator.hasNext()){
+                delete(iterator.next().getId());
+            }
+        }catch (TestDAOException e){
+            logger.error(e.getMessage());
+        }
+        return true;
+    }
+    @Override
+    public boolean delete(Integer idTest){
+        PreparedStatement statement = null;
+        try{
+            deleteQuestionsByTestId(idTest);
+            statement = connector.getPreparedStatement(SQL_DELETE_TEST_BY_ID);
+            statement.setInt(1, idTest);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            logger.error(e.getMessage());
         }finally {
             this.closeStatement(statement);
         }
         return true;
     }
     @Override
-    public boolean delete(Integer id){
-        throw new ResourceUnsupportedOperationExeption();
-    }
-    @Override
     public boolean delete(Test test){
-        throw new ResourceUnsupportedOperationExeption();
+        throw new ResourceUnsupportedOperationException();
     }
     @Override
     public boolean create(Test test){
-        throw new ResourceUnsupportedOperationExeption();
+        throw new ResourceUnsupportedOperationException();
     }
     @Override
-    public Test update(Test test){
-        throw new ResourceUnsupportedOperationExeption();
+    public boolean update(Test test){
+        PreparedStatement statement = null;
+        deleteQuestionsByTestId(test.getId());
+        try {
+            List<Question> listQuestions = test.getQuestions();
+            Iterator<Question> iteratorQuestions = listQuestions.iterator();
+            while (iteratorQuestions.hasNext()){
+                Question question = iteratorQuestions.next();
+                statement = connector.getPreparedStatement(SQL_INSERT_QUESTION_BY_TEST);
+                statement.setInt(1, test.getId());
+                statement.setString(2, question.getValueQuestion());
+                statement.executeUpdate();
+                statement = connector.getPreparedStatement(SQL_SELECT_IDQUESTION_BY_VALUEQUESTION);
+                statement.setString(1, question.getValueQuestion());
+                ResultSet resultSet = statement.executeQuery();
+                resultSet.next();
+                Integer idQuestion = resultSet.getInt("id");
+                List<Answer> listAnswers = question.getAnswers();
+                Iterator<Answer> iteratorAnswers = listAnswers.iterator();
+                while (iteratorAnswers.hasNext()){
+                    Answer answer = iteratorAnswers.next();
+                    statement = connector.getPreparedStatement(SQL_INSERT_ANSWER_BY_QUESTION);
+                    statement.setInt(1, idQuestion);
+                    statement.setString(2, answer.getValueAnswer());
+                    statement.setBoolean(3, answer.getCorrectAnswer());
+                    statement.executeUpdate();
+                }
+                statement = connector.getPreparedStatement(SQL_UPDATE_TEST);
+                statement.setString(1, test.getSubject());
+                statement.setString(2, test.getTopic());
+                statement.setInt(3, test.getTime());
+                statement.setInt(4, test.getId());
+                statement.executeUpdate();
+            }
+        }catch (SQLException e){
+            logger.error(e.getMessage());
+        }finally {
+            this.closeStatement(statement);
+        }
+        return true;
     }
 
+    public boolean deleteAnswerById(Integer id){
+        PreparedStatement statement = null;
+        try{
+            statement = connector.getPreparedStatement(SQL_DELETE_ANSWER_BY_ID);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            logger.error(e.getMessage());
+        }finally {
+            this.closeStatement(statement);
+        }
+        return true;
+    }
+    public boolean deleteAnswersByQuestionId(Integer id){
+        PreparedStatement statement = null;
+        try{
+            statement = connector.getPreparedStatement(SQL_DELETE_ANSWERS_BY_QUESTIONID);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            logger.error(e.getMessage());
+        }finally {
+            this.closeStatement(statement);
+        }
+        return true;
+    }
+    public boolean deleteQuestionById(Integer id){
+        PreparedStatement statement = null;
+        try{
+            deleteAnswersByQuestionId(id);
+            statement = connector.getPreparedStatement(SQL_DELETE_QUESTION_BY_ID);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            logger.error(e.getMessage());
+        }finally {
+            this.closeStatement(statement);
+        }
+        return true;
+    }
+    public boolean deleteQuestionsByTestId(Integer id){
+        PreparedStatement statement = null;
+        try {
+            Test test = findEntityById(id);
+            List<Question> questions = test.getQuestions();
+            Iterator<Question> iterator = questions.iterator();
+            while (iterator.hasNext()){
+                deleteQuestionById(iterator.next().getId());
+            }
+        }catch (TestDAOException e){
+            logger.error(e.getMessage());
+        }
+        return true;
+    }
 
 }

@@ -23,6 +23,18 @@ body{
 #list ul li {
 
 }
+#list p a.name{
+    color: #000000;
+    text-decoration:none;
+    text-align:center;
+    font-size: 20px;
+    font-family:Georgia, Times, serif;
+    margin-bottom: 20px;
+
+}
+#list p a.name:hover{
+    color:rgba(15, 146, 0, 0.99);
+}
 #list ul li a.title {
     display:block;
     text-decoration:none;
@@ -43,6 +55,8 @@ body{
 #list ul li a.title strong {
     display: block;
     font-weight: bold;
+    min-height: 50px;
+    margin-right: 10%;
 }
 #list ul li a.cross{
     display:inline;
@@ -55,4 +69,55 @@ body{
 }
 #list ul li a.cross:hover img{
     width: 100%;
+}
+form p button{
+    width:47%;
+    font-family: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    display: inline-block;
+    margin: 5% 1% 0%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    border: 3px solid #72AF4C;
+    color: #222;
+    overflow: hidden;
+    font-size: 15px;
+}
+form p button:after{
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    width: 101%;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    background: #72AF4C;
+    opacity: 0;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+form p button:active,
+form p button:hover{
+    color: rgba(11, 7, 5, 0.94);
+}
+form p button:hover:after{
+    height: 75%;
+    opacity: 1;
+}
+form p button:active:after{
+    height: 130%;
+    opacity: 1;
 }

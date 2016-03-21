@@ -23,7 +23,12 @@
 
 <div id="list">
   <form name="ShowListTests" method="post" action="maincontroller">
-    <p><fmt:message key="statistic.body.form.title"/></p>
+    <c:if test="${user.admin == false}">
+      <p><fmt:message key="statistic.body.form.title"/></p>
+    </c:if>
+    <c:if test="${user.admin == true}">
+      <p>${currentUser.lastname} ${currentUser.firstname} ${currentUser.login}</p>
+    </c:if>
     <ul>
       <c:forEach var="elem" items="${statisticUser}" varStatus="status">
         <li>

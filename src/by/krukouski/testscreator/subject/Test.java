@@ -1,6 +1,7 @@
 package by.krukouski.testscreator.subject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by Krukouski Andrei on 26.12.2015.
@@ -35,6 +36,27 @@ public class Test extends Entity {
         this.subject = subject;
         this.time = time;
         this.questions = new ArrayList<>();
+    }
+    public boolean deleteQuestion(Integer idQuestion){
+        Iterator<Question> iterator = questions.iterator();
+        while (iterator.hasNext()){
+            Question question = iterator.next();
+            if(question.getId().equals(idQuestion)){
+                questions.remove(question);
+                return true;
+            }
+        }
+        return false;
+    }
+    public Question getQuestion(Integer idQuestion) throws NullPointerException{
+        Iterator<Question> iterator = questions.iterator();
+        while (iterator.hasNext()){
+            Question question = iterator.next();
+            if(question.getId().equals(idQuestion)){
+                return question;
+            }
+        }
+        throw new NullPointerException("no question");
     }
     public String getTopic(){
         return topic;

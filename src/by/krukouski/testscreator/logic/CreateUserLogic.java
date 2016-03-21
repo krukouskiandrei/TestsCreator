@@ -1,6 +1,7 @@
 package by.krukouski.testscreator.logic;
 
 import by.krukouski.testscreator.dao.UserDAO;
+import by.krukouski.testscreator.exception.UserDAOException;
 import by.krukouski.testscreator.subject.User;
 
 /**
@@ -11,15 +12,21 @@ public class CreateUserLogic {
     public int createUser(User user){
 
         UserDAO userDAO = new UserDAO();
-        User userLogin = userDAO.findUserByLogin(user.getLogin());
-        if(userLogin.getLogin() != null)
+        try{
+            userDAO.findUserByLogin(user.getLogin());
             return 0;
-        User userPassword = userDAO.findUserByPassword(user.getPassword());
-        if (userPassword.getLogin() != null)
+        }catch (UserDAOException e){
+
+        }
+        try{
+            userDAO.findUserByPassword(user.getPassword());
             return -1;
-        userDAO.create(user);
-        userDAO.close();
-        return 1;
+
+        }catch (UserDAOException e){
+            userDAO.create(user);
+            userDAO.close();
+            return 1;
+        }
 
     }
 

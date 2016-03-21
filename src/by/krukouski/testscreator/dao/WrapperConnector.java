@@ -1,14 +1,11 @@
 package by.krukouski.testscreator.dao;
 
 
-import by.krukouski.testscreator.exception.ResourceSQLExeption;
+import by.krukouski.testscreator.exception.ResourceSQLException;
 import org.apache.log4j.Logger;
 
 
 import java.sql.*;
-import java.util.MissingResourceException;
-import java.util.Properties;
-import java.util.ResourceBundle;
 
 /**
  * Created by Krukouski Andrei on 27.12.2015.
@@ -18,13 +15,8 @@ public class WrapperConnector {
     static Logger logger = Logger.getLogger(WrapperConnector.class);
 
     private Connection connection;
-    public WrapperConnector(){
-        try {
-            connection = DataSource.getConnection();
-        }catch (SQLException | ClassNotFoundException e) {
-            logger.error(e.getMessage());
-        }
-
+    public WrapperConnector(Connection connection){
+        this.connection = connection;
     }
     public Statement getStatement() throws SQLException{
         if(connection != null){
@@ -33,7 +25,7 @@ public class WrapperConnector {
                 return statement;
         }
         logger.error("connection or statement is null");
-        throw new ResourceSQLExeption("connection or statement is null");
+        throw new ResourceSQLException("connection or statement is null");
     }
     public PreparedStatement getPreparedStatement(String sql) throws SQLException{
         if(connection != null){
@@ -42,7 +34,7 @@ public class WrapperConnector {
                 return preparedStatement;
         }
         logger.error("connection or preparedStatement is null");
-        throw new ResourceSQLExeption("connection or preparedStatement is null");
+        throw new ResourceSQLException("connection or preparedStatement is null");
     }
     public void closeStatement(Statement statement){
         if(statement != null){
@@ -53,7 +45,7 @@ public class WrapperConnector {
             }
         }
     }
-    public void closeConnection(){
+    /*public void closeConnection(){
         if(connection != null){
             try {
                 DataSource.returnConnection(connection);
@@ -62,6 +54,6 @@ public class WrapperConnector {
                 logger.error(e.getMessage());
             }
         }
-    }
+    }*/
 
 }

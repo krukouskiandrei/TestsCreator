@@ -1,6 +1,7 @@
 package by.krukouski.testscreator.logic;
 
 import by.krukouski.testscreator.dao.UserDAO;
+import by.krukouski.testscreator.exception.UserDAOException;
 import by.krukouski.testscreator.subject.User;
 
 /**
@@ -8,18 +9,19 @@ import by.krukouski.testscreator.subject.User;
  */
 public class LoginLogic {
     //checking login and password
-    public User checkLogin(String enterLogin, String enterPassword){
+    public User checkLogin(String enterLogin, String enterPassword) {
 
-        UserDAO userDAO = new UserDAO();
-        User user = userDAO.findUserByLogin(enterLogin);
-        userDAO.close();
-        if(user.getId() == null){
+        try {
+            UserDAO userDAO = new UserDAO();
+            User user = userDAO.findUserByLogin(enterLogin);
+            userDAO.close();
+            if (!user.getPassword().equals(enterPassword)) {
+                return null;
+            }
+            return user;
+        }catch (UserDAOException e){
             return null;
         }
-        if(!user.getPassword().equals(enterPassword)){
-            return null;
-        }
-        return user;
     }
 
 }

@@ -1,5 +1,6 @@
 package by.krukouski.testscreator.dao;
 
+import by.krukouski.testscreator.exception.DAOException;
 import by.krukouski.testscreator.subject.Entity;
 
 
@@ -13,14 +14,14 @@ public abstract class AbstractDAO <K, T extends Entity> {//К - key in table
 
     protected WrapperConnector connector;
 
-    public abstract List<T> findAll();
-    public abstract T findEntityById(K id);
+    public abstract List<T> findAll() throws DAOException;
+    public abstract T findEntityById(K id) throws DAOException;
     public abstract boolean delete(K id);
     public abstract boolean delete(T entity);
     public abstract boolean create(T entity);
-    public abstract T update(T entity);
+    public abstract boolean update(T entity);
     public void close(){
-        connector.closeConnection();
+        DataSource.returnConnection(connector);
     }
     protected void closeStatement(Statement statement){
         connector.closeStatement(statement);

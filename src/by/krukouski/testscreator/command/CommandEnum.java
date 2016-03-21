@@ -99,9 +99,64 @@ public enum  CommandEnum {//list all commands
         {
             this.command = new ShowUserCommand();
         }
+    },
+    DELETETEST{
+        {
+            this.command = new DeleteTestCommand();
+        }
+    },
+    SHOWLISTQUESTIONS{
+        {
+            this.command = new ShowListQuestionsCommand();
+        }
+    },
+    DELETEQUESTION{
+        {
+            this.command = new DeleteQuestionCommand();
+        }
+    },
+    SHOWCHANGEQUESTION{
+        {
+            this.command = new ShowChangeQuestionCommand();
+        }
+    },
+    CHANGEQUESTION{
+        {
+            this.command = new ChangeQuestionCommand();
+        }
+    },
+    SAVETEST{
+        {
+            this.command = new SaveTestCommand();
+        }
+    },
+    DELETEUSER{
+        {
+            this.command = new DeleteUserCommand();
+        }
+    },
+    CHANGENAMETEST{
+        {
+            this.command = new ChangeNameTestCommand();
+        }
+    },
+    CHANGENAME{
+        {
+            this.command = new ChangeNameCommand();
+        }
+    },
+    ADDQUESTION{
+        {
+            this.command = new AddQuestionCommand();
+        }
+    },
+    ADDNEWQUESTION{
+        {
+            this.command = new AddNewQuestionCommand();
+        }
     };
 
-    IActionCommand command;
+    public IActionCommand command;
     public IActionCommand getCurrentCommand(){
         return command;
     }

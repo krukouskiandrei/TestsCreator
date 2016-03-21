@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Krukouski Andrei on 15.03.2016.
  */
-public class ChangeTestCommand implements IActionCommand {
+public class ChangeTestCommand implements IActionCommand {//show list tests for change
     private  static final String PARAM_USER = "user";
     @Override
     public String execute(SessionRequestContent request){

@@ -21,8 +21,13 @@
 <jsp:include page="static_elements/header.jsp"></jsp:include>
 
 <div id="result">
+  <form method="post" action="maincontroller">
+    <input type="hidden" name="command" value="forwardtomainjsp">
   <p><fmt:message key="resultTest.body.result.part.one"/><span>${resultCheckTest}</span> <fmt:message key="resultTest.body.result.part.two"/> <span>${test.countQuestions}</span></p>
-
+    <p>
+      <button type="submit" id="next"><fmt:message key="addQuestion.body.form.button"/></button>
+    </p>
+  </form>
 </div>
 <jsp:include page="static_elements/footer.jsp"></jsp:include>
 </body>

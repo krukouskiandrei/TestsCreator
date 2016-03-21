@@ -27,8 +27,8 @@
     <ul>
       <c:forEach var="elem" items="${changeTests}" varStatus="status">
         <li>
-          <a href="maincontroller?command=deleteTest&idtest=${elem.id}" class="cross"><img src="../css/image/cross1.png"></a>
-          <a href="maincontroller?command=showTest&idtest=${elem.id}" class="title">
+          <a href="maincontroller?command=deleteTest&idtest=${elem.id}" title="<fmt:message key="changeTest.body.form.cross"/> " class="cross"><img src="../css/image/cross1.png"></a>
+          <a href="maincontroller?command=showListQuestions&idtest=${elem.id}" class="title">
             <strong><c:out value="${elem.topic}"/></strong>
             <span><c:out value="${elem.subject}"/></span>
           </a>

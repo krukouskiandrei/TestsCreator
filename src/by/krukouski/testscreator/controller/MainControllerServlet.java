@@ -36,7 +36,7 @@ public class MainControllerServlet extends HttpServlet {
 
         try {
             processRequest(request, response);
-            logger.info("request and response sended in prossesRequest() from doGet");
+            logger.debug("request and response sended in prossesRequest() from doGet");
 
         }catch (ServletException e){
             logger.error(e.getMessage());
