@@ -18,7 +18,6 @@
 </head>
 <body>
   <jsp:include page="static_elements/header.jsp"></jsp:include>
-  <%--<label class="user_name">${user.lastname} ${user.firstname}</label>--%>
   <form name="SelectForm" method="post" action="maincontroller" class="select_form">
     <button name="command" value="createTest" class="btn btn-1 btn-1f"><fmt:message key="main.body.button.create"/></button>
     <button name="command" value="takeTest" class="btn btn-1 btn-1f"><fmt:message key="main.body.button.pass"/></button>

@@ -30,8 +30,8 @@
   <p>
     <a href="maincontroller?command=registration"><fmt:message key="index.body.registration"/></a>
   </p>
-  <p class="error_message">${wrongAction}</p>
-  <p class="error_message">${nullPage}</p>
+  <%--<p class="error_message">${wrongAction}</p>
+  <p class="error_message">${nullPage}</p>--%>
 </form>
 <jsp:include page="jsp/static_elements/footer.jsp"></jsp:include>
 </body>

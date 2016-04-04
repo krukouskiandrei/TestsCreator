@@ -1,0 +1,113 @@
+body{
+    background: url(image/backgroundimage.jpg);
+    color: #000000;
+    font-size: 23px;
+    margin: 0;
+    padding: 0;
+}
+form{
+    margin: 10px auto 7%;
+    width: 30%;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 13px;
+    color:#222;
+    font-weight:bold;
+}
+form .title{
+    font-size: 20px;
+    text-align: center;
+}
+form p{
+    width: 70%;
+    margin: 5px auto;
+}
+form p label{
+    display:block;
+}
+form p label span{
+    color:red;
+}
+form p input{
+    height: 29px;
+    width: 100%;
+    margin: 5px 0;
+    padding: 0 8px;
+    background:#fff;
+    border:1px solid #d9d9d9;
+    border-top:1px solid #c0c0c0;
+    box-sizing: border-box;
+    border-radius: 1px;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    text-align: start;
+}
+form p input:focus, form p input:focus:hover{
+    outline:none;
+    border: 1.5px solid #72AF4C;
+    border-radius: 1px;
+}
+form p input:hover{
+    border:1px solid #CAC6C4;
+    border-top:1px solid #B0ACAB ;
+}
+form p button{
+    font-family: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    display: inline-block;
+    margin: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    border: 3px solid #72AF4C;
+    color: #222;
+    overflow: hidden;
+    font-size: 15px;
+}
+form p button:after{
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    width: 101%;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    background: #72AF4C;
+    opacity: 0;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+form p button:active,
+form p button:hover{
+    color: rgba(11, 7, 5, 0.94);
+}
+form p button:hover:after{
+    height: 75%;
+    opacity: 1;
+}
+form p button:active:after{
+    height: 130%;
+    opacity: 1;
+}
+form p img{
+    width: 40%;
+    padding-left: 25%;
+}

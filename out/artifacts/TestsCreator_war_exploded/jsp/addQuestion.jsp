@@ -46,7 +46,6 @@
   </p>
   <p>
     <button type="submit"><fmt:message key="addQuestion.body.form.button"/></button>
-    <%--<button type="submit" id="createAllTest" onclick="createATest()"><fmt:message key="create.body.form.bcreate.test"/></button>--%>
   </p>
 </form>
 

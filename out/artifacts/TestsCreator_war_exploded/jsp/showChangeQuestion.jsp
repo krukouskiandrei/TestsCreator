@@ -46,21 +46,10 @@
         <input type="text" name="answer" value="${elem.valueAnswer}" autocomplete="off"/>
       </c:if>
     </c:forEach>
-    <%--<input type="checkbox" name="correct" value="${flac = flac + 1}" checked/>
-    <input type="text" name="answer" value="" autocomplete="off" required/>
-    <input type="checkbox" name="correct" value="${flac = flac + 1}"/>
-    <input type="text" name="answer" value="" autocomplete="off" required/>
-    <input type="checkbox" name="correct" value="${flac = flac + 1}"/>
-    <input type="text" name="answer" value="" autocomplete="off"/>
-    <input type="checkbox" name="correct" value="${flac = flac + 1}"/>
-    <input type="text" name="answer" value="" autocomplete="off"/>
-    <input type="checkbox" name="correct" value="${flac = flac + 1}"/>
-    <input type="text" name="answer" value="" autocomplete="off"/>--%>
     <a href="#" onclick="addA()" id="addAnswer" title="<fmt:message key="create.body.form.add.answer"/>"><img src="../css/image/add1.png" alt="<fmt:message key="create.body.form.add.answer"/>"/></a>
   </p>
   <p>
     <button type="submit" id="createQuestion"><fmt:message key="create.body.form.bcreate.question"/></button>
-    <%--<button type="submit" id="createAllTest" onclick="createATest()"><fmt:message key="create.body.form.bcreate.test"/></button>--%>
   </p>
 </form>
 

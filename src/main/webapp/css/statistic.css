@@ -1,0 +1,52 @@
+body{
+    background: url(image/backgroundimage.jpg);
+    color: #000000;
+    font-size: 23px;
+    margin: 0;
+    padding: 0;
+}
+#list {
+    margin: 5% auto;
+    width:55%;
+    font-family: Georgia, Times, serif;
+    font-size:15px;
+}
+#list p{
+    text-align:center;
+    font-size: 30px;
+    font-family:Georgia, Times, serif;
+    margin-bottom: 20px;
+}
+#list ul {
+    list-style: none;
+}
+#list ul li {
+
+}
+#list ul li{
+    display:block;
+    text-decoration:none;
+    color:#404040;
+    background-color:#FFFFFF;
+    line-height:30px;
+    border-bottom-style:solid;
+    border-bottom-width:1px;
+    border-bottom-color:#CCCCCC;
+    padding-left:10px;
+    cursor:pointer;
+    text-align: left;
+}
+#list ul li .data{
+    float:right;
+    padding-right: 3%;
+    font-family: Times;
+    font-weight:bold;
+}
+#list ul li strong {
+    display: block;
+    font-weight: bold;
+}
+#list ul li .number{
+    font-family: Times;
+
+}

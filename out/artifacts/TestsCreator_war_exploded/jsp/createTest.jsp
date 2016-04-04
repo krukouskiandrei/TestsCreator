@@ -51,19 +51,5 @@
 
   <jsp:include page="static_elements/footer.jsp"></jsp:include>
 
-<%--
-<div class="create_test">
-  <h1><fmt:message key="createTest.body.title"/></h1>
-  <form name="CreateTest" method="post" action="maincontroller">
-    <input type="hidden" name="command" value="create">
-    <p><input type="text" name="topic" value="" placeholder="<fmt:message key="createTest.body.form.topic"/>" autocomplete="off" required></p>
-    <p><input type="text" name="subject" value="" placeholder="<fmt:message key="createTest.body.form.subject"/>" autocomplete="off" required></p>
-    <p><input type="text" name="time" value="" pattern="[0-9]{1,3}" placeholder="<fmt:message key="createTest.body.form.time"/>" autocomplete="off" required></p>
-    <button type="submit" class="btn btn-1 btn-1e"><fmt:message key="createTest.body.form.button.createtest"/></button>
-  </form>
-
-</div>
---%>
-
 </body>
 </html>

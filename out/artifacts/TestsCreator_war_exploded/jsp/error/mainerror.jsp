@@ -15,11 +15,16 @@
     <meta charset="UTF-8" />
     <title><fmt:message key="mainerror.head.title"/> </title>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
 </head>
 <body>
-  <p><fmt:message key="mainerror.body.request.part.one"/> {pageContext.errorData.requestURI} <fmt:message key="mainerror.body.request.part.two"/> </p>
+<jsp:include page="../static_elements/headerIndex.jsp"></jsp:include>
+<div class="error">
+<p><fmt:message key="mainerror.body.request.part.one"/> {pageContext.errorData.requestURI} <fmt:message key="mainerror.body.request.part.two"/> </p>
   <p><fmt:message key="mainerror.body.servlet"/> {pageContext.errorData.servletName}</p>
   <p><fmt:message key="mainerror.body.status"/> {pageContext.errorData.statusCode}</p>
   <p><fmt:message key="mainerror.body.exception"/> ${pageContext.errorData.throwable}</p>
+</div>
+<jsp:include page="../static_elements/footer.jsp"></jsp:include>
 </body>
 </html>

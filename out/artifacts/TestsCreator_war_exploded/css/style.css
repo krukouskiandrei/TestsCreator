@@ -860,3 +860,14 @@ footer ul li{
 footer ul li a img{
   width: 100%;
 }
+.error{
+  margin: 100px auto 200px;
+  width: 50%;
+}
+.error p{
+  font-family: arial, helvetica, sans-serif;
+  font-size: 20px;
+  color:#222;
+  font-weight:bold;
+  line-height: normal;
+}

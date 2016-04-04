@@ -1,0 +1,96 @@
+body{
+    background: url(image/backgroundimage.jpg);
+    color: #000000;
+    font-size: 23px;
+    margin: 0;
+    padding: 0;
+}
+form{
+    margin: 10% auto 17%;
+    width: 70%;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 13px;
+    color:#222;
+    font-weight:bold;
+}
+form p{
+    display:inline;
+    width: 70%;
+    margin: 5px auto;
+}
+form p a{
+    width: 25%;
+    text-decoration:none;
+    font-family: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    display: inline-block;
+    margin: 15px;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    border: 3px solid #72AF4C;
+    color: #222;
+    overflow: hidden;
+    font-size: 15px;
+    text-align:center;
+}
+form p a:after{
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    width: 101%;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    background: #72AF4C;
+    opacity: 0;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+form p a:active,
+form p a:hover{
+    color: rgba(11, 7, 5, 0.94);
+}
+form p a:hover:after{
+    height: 75%;
+    opacity: 1;
+}
+form p a:active:after{
+    height: 130%;
+    opacity: 1;
+}
+/*footer{
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+}
+footer ul{
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
+    width: 25%;
+}
+footer ul li{
+    padding: 0 3%;
+    display: inline-block;
+    width: 35%;
+}
+footer ul li a img{
+    width: 100%;
+}*/
+
