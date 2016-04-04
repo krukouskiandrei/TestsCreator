@@ -283,3 +283,10 @@
 2016-04-04 19:12:20 DEBUG MainControllerServlet:54 - request and response sended in prossesRequest() from doPost
 2016-04-04 19:12:23 DEBUG MainControllerServlet:39 - request and response sended in prossesRequest() from doGet
 2016-04-04 19:12:29 DEBUG MainControllerServlet:39 - request and response sended in prossesRequest() from doGet
+2016-04-04 19:35:05 DEBUG MainControllerServlet:39 - request and response sended in prossesRequest() from doGet
+2016-04-04 19:35:14 DEBUG MainControllerServlet:54 - request and response sended in prossesRequest() from doPost
+2016-04-04 19:35:16 DEBUG MainControllerServlet:54 - request and response sended in prossesRequest() from doPost
+2016-04-04 19:35:25 DEBUG MainControllerServlet:54 - request and response sended in prossesRequest() from doPost
+2016-04-04 19:35:29 DEBUG MainControllerServlet:54 - request and response sended in prossesRequest() from doPost
+2016-04-04 19:35:30 DEBUG MainControllerServlet:39 - request and response sended in prossesRequest() from doGet
+2016-04-04 19:35:32 DEBUG MainControllerServlet:39 - request and response sended in prossesRequest() from doGet
